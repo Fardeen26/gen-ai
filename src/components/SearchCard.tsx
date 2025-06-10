@@ -8,10 +8,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Send, CircleStop } from "lucide-react"
 import CreditCardDetailCard from "@/components/CreditCardDetailCard"
 import axios from 'axios'
-import { extractJsonFromAIResponse } from "@/lib/jsonFormatter"
 import { Message } from "@/types"
 import { BENEFIT_CONFIG } from "@/config/benifits"
-
+import { extractJsonFromAIResponse } from "@/lib/jsonFormatter"
 
 export default function SearchCard() {
     const [messages, setMessages] = useState<Message[]>([
@@ -36,15 +35,26 @@ export default function SearchCard() {
         setIsLoading(true)
         try {
             const response = await axios.post('/api/query', { query });
-            console.log("Raw response:", response.data);
 
+            let botMessage: Message;
             const cardData = extractJsonFromAIResponse(response.data.results)
 
-            const botMessage: Message = {
-                role: "bot",
-                content: `I found ${cardData.results.length} credit card${cardData.length > 1 ? 's' : ''} matching your requirements:`,
-                cardData: cardData.results
-            };
+            if (cardData.type === "cards") {
+                console.log("card data inside card", cardData)
+                botMessage = {
+                    role: "bot",
+                    content: `I found ${cardData.results.length} credit card${cardData.length > 1 ? 's' : ''} matching your requirements:`,
+                    cardData: cardData.results
+                };
+            } else if (cardData.type === "text") {
+                botMessage = {
+                    role: "bot",
+                    content: cardData.content
+                };
+            } else {
+                throw new Error("Invalid response type");
+            }
+
             setMessages(prev => [...prev, botMessage]);
         } catch (error) {
             console.error('Error processing query:', error);

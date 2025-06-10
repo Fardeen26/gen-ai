@@ -1,25 +1,43 @@
 import { GoogleGenAI, Modality } from "@google/genai";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import creditCards from "@/data/data.json";
+import { checkRateLimit } from "@/lib/rateLimiter";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export async function POST(req: NextRequest) {
-    const { query } = await req.json();
-
-    const prompt = `
-    You are a credit card recommendation assistant. Based on the user's query and the provided credit card data, return a JSON response with filtered cards or a comparison. The data is:
-    ${JSON.stringify(creditCards, null, 2)}
-    
-    User query: "${query}"
-    
-    For queries like "Show me cards with lounge access and high cashback on fuel," filter cards that match both criteria.
-    For queries like "Compare Axis Magnus vs HDFC Regalia," provide a side-by-side comparison with key benefits.
-    For queries like "Best credit cards for first-time users with no annual fee," filter cards with no annual fee and suitable for beginners.
-    Return the response in JSON format with a "results" array or "comparison" object.
-  `;
-
     try {
+        const ip = req.headers.get("x-forwarded-for") ?? "127.0.0.1";
+
+        if (!checkRateLimit(ip)) {
+            return NextResponse.json(
+                { error: "Too many requests. Please try again in a minute." },
+                { status: 429 }
+            );
+        }
+
+        const { query } = await req.json();
+
+        const prompt = `
+        You are a credit card recommendation assistant. Based on the user's query and the provided credit card data, provide a response in one of these formats:
+
+        1. For queries that need card recommendations or comparisons, return a JSON response with a "type": "cards" and "results" array containing the filtered cards.
+        2. For general questions or explanations, return a JSON response with "type": "text" and "content" containing the explanation.
+
+        The credit card data is:
+        ${JSON.stringify(creditCards, null, 2)}
+        
+        User query: "${query}"
+        
+        Examples:
+        - For "Show me cards with lounge access" -> Return type: "cards" with filtered cards
+        - For "What is a credit card annual fee?" -> Return type: "text" with explanation
+        - For "Compare Axis Magnus vs HDFC Regalia" -> Return type: "cards" with comparison
+        - For "How do credit card rewards work?" -> Return type: "text" with explanation
+        
+        Always wrap your response in a JSON object with "type" and either "results" or "content" field.
+      `;
+
         const response = await ai.models.generateContent({
             model: "gemini-2.0-flash",
             contents: prompt,
@@ -28,18 +46,10 @@ export async function POST(req: NextRequest) {
             },
         });
 
-        console.log("response", response)
-
-        // Safely access the response content
         const content = response?.candidates?.[0]?.content?.parts?.[0]?.text;
         if (!content) {
             throw new Error('Invalid response format from AI model');
         }
-
-        console.log(content)
-        // Parse the JSON content from the response
-        // const parsedContent = JSON.parse(content);
-
 
         return Response.json({ results: content || [] });
     } catch (error) {
