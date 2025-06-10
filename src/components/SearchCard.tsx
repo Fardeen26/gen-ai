@@ -74,26 +74,26 @@ export default function SearchCard() {
     }, [messages]);
 
     return (
-        <div className="flex flex-col h-[calc(100vh-2.5rem)] mt-5 mb-5 w-full max-w-6xl mx-auto bg-background rounded-2xl shadow relative overflow-y-auto">
-            <ScrollAreaPrimitive.Root className="flex-1 px-0 pt-8 pb-4 overflow-y-auto" style={{ height: "calc(100vh-120px)" }}>
-                <ScrollAreaPrimitive.Viewport className="flex flex-col gap-6 px-8">
+        <div className="flex flex-col h-[calc(100vh-2.5rem)] mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto bg-background rounded-xl sm:rounded-2xl shadow relative !overflow-hidden">
+            <ScrollAreaPrimitive.Root className="flex-1 px-0 pt-4 sm:pt-8 pb-4 overflow-y-auto" style={{ height: "calc(100vh-120px)" }}>
+                <ScrollAreaPrimitive.Viewport className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-8">
                     {messages.map((message, index) => (
                         <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-                            <div className="flex items-end gap-2 relative px-12">
+                            <div className="flex items-end gap-2 relative px-10 sm:px-12">
                                 <div className="absolute top-2 left-0">
                                     {message.role === "bot" && (
-                                        <Avatar className="w-10 h-10 border-2 border-white shadow">
+                                        <Avatar className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-white shadow">
                                             <AvatarImage src="/bot-pfp.png" alt="profile" />
                                             <AvatarFallback className="bg-gray-200 text-gray-600">AI</AvatarFallback>
                                         </Avatar>
                                     )}
                                 </div>
                                 <div className="flex flex-col gap-2 py-2">
-                                    <div className={`${message.role === "user" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-800"} px-6 py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-2xl text-sm shadow`}>
+                                    <div className={`${message.role === "user" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-800"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-2xl text-sm shadow`}>
                                         {message.content}
                                     </div>
                                     {message.cardData && Array.isArray(message.cardData) && (
-                                        <div className="flex flex-row flex-wrap gap-4">
+                                        <div className="flex flex-row flex-wrap gap-3 sm:gap-4">
                                             {message.cardData.map((card, cardIndex) => {
                                                 const benefits = BENEFIT_CONFIG
                                                     .filter(cfg => ((card as unknown) as Record<string, unknown>)[cfg.key] && ((card as unknown) as Record<string, unknown>)[cfg.key] !== "None")
@@ -118,7 +118,7 @@ export default function SearchCard() {
                                 </div>
                                 <div className="absolute top-2 right-0">
                                     {message.role === "user" && (
-                                        <Avatar className="w-10 h-10 border-2 border-white shadow">
+                                        <Avatar className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-white shadow">
                                             <AvatarImage src="/user-pfp.png" alt="profile" />
                                             <AvatarFallback className="bg-blue-600 text-white">U</AvatarFallback>
                                         </Avatar>
@@ -133,9 +133,9 @@ export default function SearchCard() {
                 <ScrollAreaPrimitive.Corner />
             </ScrollAreaPrimitive.Root>
 
-            <div className="flex items-center gap-3 p-4 border-t bg-white rounded-b-2xl">
+            <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 border-t bg-white rounded-b-xl sm:rounded-b-2xl">
                 <Input
-                    className="flex-1 rounded-full bg-gray-100 border-none focus:ring-2 focus:ring-blue-200 text-base px-5 py-3"
+                    className="flex-1 rounded-full bg-gray-100 border-none focus:ring-2 focus:ring-blue-200 text-sm sm:text-base px-4 sm:px-5 py-2 sm:py-3"
                     placeholder="Ask me about credit cards..."
                     value={query}
                     onChange={e => setQuery(e.target.value)}
@@ -145,9 +145,8 @@ export default function SearchCard() {
                         }
                     }}
                 />
-                <Button size="icon" className="rounded-full bg-blue-600 text-white hover:bg-blue-700" onClick={handleSubmit}>
-
-                    {isLoading ? <CircleStop className="w-5 h-5 text-xs animate-pulse" /> : <Send className="w-5 h-5" />}
+                <Button size="icon" className="rounded-full bg-blue-600 text-white hover:bg-blue-700 w-9 h-9 sm:w-10 sm:h-10" onClick={handleSubmit}>
+                    {isLoading ? <CircleStop className="w-4 h-4 sm:w-5 sm:h-5 text-xs animate-pulse" /> : <Send className="w-4 h-4 sm:w-5 sm:h-5" />}
                 </Button>
             </div>
         </div>
