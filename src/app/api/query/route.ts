@@ -1,4 +1,4 @@
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Modality } from "@google/genai";
 import { NextRequest } from "next/server";
 import creditCards from "@/data/data.json";
 
@@ -23,13 +23,27 @@ export async function POST(req: NextRequest) {
         const response = await ai.models.generateContent({
             model: "gemini-2.0-flash",
             contents: prompt,
+            config: {
+                responseModalities: [Modality.TEXT],
+            },
         });
 
         console.log("response", response)
 
-        return Response.json({ result: response.text });
+        // Safely access the response content
+        const content = response?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!content) {
+            throw new Error('Invalid response format from AI model');
+        }
+
+        console.log(content)
+        // Parse the JSON content from the response
+        // const parsedContent = JSON.parse(content);
+
+
+        return Response.json({ results: content || [] });
     } catch (error) {
-        console.log(error)
+        console.error('Error processing query:', error);
         return Response.json({ error: "Failed to process query" }, { status: 500 });
     }
 }
