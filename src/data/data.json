@@ -1,0 +1,39 @@
+[
+    {
+        "id": 1,
+        "bank": "HDFC",
+        "name": "Regalia Gold",
+        "annual_fee": 3000,
+        "rewards_rate": "4 points per ₹150",
+        "cashback": {
+            "fuel": "1% surcharge waiver",
+            "online": "5% on select merchants"
+        },
+        "lounge_access": "Complimentary domestic and international via Priority Pass",
+        "eligibility": "Annual income > ₹12L"
+    },
+    {
+        "id": 2,
+        "bank": "Axis",
+        "name": "Magnus",
+        "annual_fee": 12500,
+        "rewards_rate": "12 EDGE points per ₹200",
+        "cashback": {
+            "fuel": "1% surcharge waiver"
+        },
+        "lounge_access": "Unlimited domestic and international",
+        "eligibility": "Annual income > ₹18L"
+    },
+    {
+        "id": 3,
+        "bank": "ICICI",
+        "name": "Platinum Chip",
+        "annual_fee": 0,
+        "rewards_rate": "2 points per ₹100",
+        "cashback": {
+            "fuel": "1% surcharge waiver"
+        },
+        "lounge_access": "None",
+        "eligibility": "No minimum income"
+    }
+]
