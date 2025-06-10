@@ -74,7 +74,7 @@ export default function SearchCard() {
     }, [messages]);
 
     return (
-        <div className="flex flex-col h-[calc(100vh-2.5rem)] mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto bg-background rounded-xl sm:rounded-2xl shadow relative !overflow-hidden">
+        <div className="flex flex-col h-[calc(100vh-2.5rem)] mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto bg-background rounded-xl sm:rounded-2xl  relative !overflow-hidden">
             <ScrollAreaPrimitive.Root className="flex-1 px-0 pt-4 sm:pt-8 pb-4 overflow-y-auto" style={{ height: "calc(100vh-120px)" }}>
                 <ScrollAreaPrimitive.Viewport className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-8">
                     {messages.map((message, index) => (
@@ -89,7 +89,7 @@ export default function SearchCard() {
                                     )}
                                 </div>
                                 <div className="flex flex-col gap-2 py-2">
-                                    <div className={`${message.role === "user" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-800"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-2xl text-sm shadow`}>
+                                    <div className={`${message.role === "user" ? "bg-gradient-to-br from-blue-700 to-blue-500 text-white" : "bg-gradient-to-br from-gray-200 to-gray-100 text-gray-800"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-2xl text-sm shadow`}>
                                         {message.content}
                                     </div>
                                     {message.cardData && Array.isArray(message.cardData) && (
@@ -129,13 +129,13 @@ export default function SearchCard() {
                     ))}
                     <div ref={scrollToBottomRef} />
                 </ScrollAreaPrimitive.Viewport>
-                <ScrollAreaPrimitive.Scrollbar orientation="vertical" />
-                <ScrollAreaPrimitive.Corner />
+                <ScrollAreaPrimitive.Scrollbar orientation="vertical" className="hidden" />
+                <ScrollAreaPrimitive.Corner className="hidden" />
             </ScrollAreaPrimitive.Root>
 
             <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 border-t bg-white rounded-b-xl sm:rounded-b-2xl">
                 <Input
-                    className="flex-1 rounded-full bg-gray-100 border-none focus:ring-2 focus:ring-blue-200 text-sm sm:text-base px-4 sm:px-5 py-2 sm:py-3"
+                    className="flex-1 rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-200 text-sm sm:text-base px-4 sm:px-5 py-2 sm:py-3"
                     placeholder="Ask me about credit cards..."
                     value={query}
                     onChange={e => setQuery(e.target.value)}

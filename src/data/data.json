@@ -1,54 +1,184 @@
 [
-    {
-        "id": 1,
-        "bank": "HDFC",
-        "name": "Regalia Gold",
-        "annual_fee": 3000,
-        "rating": 4.4,
-        "is_premium": true,
-        "rewards_rate": "4 points per ₹150",
-        "cashback": {
-            "fuel": "1% surcharge waiver",
-            "online": "5% on select merchants"
+    [
+        {
+            "id": 1,
+            "bank": "HDFC",
+            "name": "Regalia Gold",
+            "annual_fee": 2500,
+            "rating": 4.5,
+            "is_premium": true,
+            "rewards_rate": "4 points per ₹150",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "12 domestic and 6 international via Priority Pass",
+            "fuel_benifits": "None",
+            "dining": "Available",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹12L"
         },
-        "lounge_access": "Complimentary domestic and international via Priority Pass",
-        "fuel_benifits": "None",
-        "dining": "Available",
-        "insurance": "None",
-        "eligibility": "Annual income > ₹12L"
-    },
-    {
-        "id": 2,
-        "bank": "Axis",
-        "name": "Magnus",
-        "annual_fee": 12500,
-        "rating": 4.7,
-        "is_premium": false,
-        "rewards_rate": "12 EDGE points per ₹200",
-        "cashback": {
-            "fuel": "1% surcharge waiver"
+        {
+            "id": 2,
+            "bank": "Kotak",
+            "name": "Myntra Credit Card",
+            "annual_fee": 500,
+            "rating": 3.7,
+            "is_premium": false,
+            "rewards_rate": "None",
+            "cashback": {
+                "fuel": "1% surcharge waiver",
+                "online": "5% on select merchants"
+            },
+            "lounge_access": "4 domestic per year",
+            "fuel_benifits": "1% surcharge waiver on transactions Rs. 500 to Rs. 3000, max benefit Rs. 3500/year",
+            "dining": "Available",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹3L"
         },
-        "lounge_access": "None",
-        "fuel_benifits": "None",
-        "dining": "None",
-        "insurance": "None",
-        "eligibility": "Annual income > ₹18L"
-    },
-    {
-        "id": 3,
-        "bank": "ICICI",
-        "name": "Platinum Chip",
-        "annual_fee": 0,
-        "rating": 4.1,
-        "is_premium": true,
-        "rewards_rate": "2 points per ₹100",
-        "cashback": {
-            "fuel": "1% surcharge waiver"
+        {
+            "id": 3,
+            "bank": "ICICI",
+            "name": "Amazon Pay Credit Card",
+            "annual_fee": 0,
+            "rating": 4.1,
+            "is_premium": false,
+            "rewards_rate": "None",
+            "cashback": {
+                "fuel": "1% surcharge waiver",
+                "online": "up to 5% on Amazon"
+            },
+            "lounge_access": "None",
+            "fuel_benifits": "1% surcharge waiver at all petrol pumps in India",
+            "dining": "Available",
+            "insurance": "None",
+            "eligibility": "Monthly income > ₹25,000 for ICICI customers, > ₹35,000 for others"
         },
-        "lounge_access": "None",
-        "fuel_benifits": "Available",
-        "dining": "None",
-        "insurance": "None",
-        "eligibility": "No minimum income"
-    }
+        {
+            "id": 4,
+            "bank": "SBI",
+            "name": "Cashback Credit Card",
+            "annual_fee": 999,
+            "rating": 4.2,
+            "is_premium": false,
+            "rewards_rate": "None",
+            "cashback": {
+                "fuel": "None",
+                "online": "5%"
+            },
+            "lounge_access": "None",
+            "fuel_benifits": "1% fuel surcharge waiver on transactions Rs. 500 - Rs. 3,000, max Rs. 100 per statement cycle",
+            "dining": "None",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹3L"
+        },
+        {
+            "id": 5,
+            "bank": "Axis",
+            "name": "Atlas Credit Card",
+            "annual_fee": 5000,
+            "rating": 4.3,
+            "is_premium": true,
+            "rewards_rate": "5 EDGE Miles per ₹100 on travel",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "18 domestic and 12 international",
+            "fuel_benifits": "None",
+            "dining": "Available",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹15L"
+        },
+        {
+            "id": 6,
+            "bank": "American Express",
+            "name": "Platinum Card",
+            "annual_fee": 66000,
+            "rating": 4.8,
+            "is_premium": true,
+            "rewards_rate": "Membership Rewards points",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "Unlimited domestic and international",
+            "fuel_benifits": "None",
+            "dining": "Available",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹25L"
+        },
+        {
+            "id": 7,
+            "bank": "RBL",
+            "name": "BankBazaar SaveMax Credit Card",
+            "annual_fee": 0,
+            "rating": 3.9,
+            "is_premium": false,
+            "rewards_rate": "5x reward points on groceries",
+            "cashback": {
+                "fuel": "None",
+                "online": "10% on Zomato and BookMyShow"
+            },
+            "lounge_access": "None",
+            "fuel_benifits": "None",
+            "dining": "Available",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹3L"
+        },
+        {
+            "id": 8,
+            "bank": "YES Bank",
+            "name": "PaisaSave Credit Card",
+            "annual_fee": 0,
+            "rating": 3.5,
+            "is_premium": false,
+            "rewards_rate": "None",
+            "cashback": {
+                "fuel": "1% surcharge waiver",
+                "online": "3% on e-commerce"
+            },
+            "lounge_access": "None",
+            "fuel_benifits": "1% surcharge waiver",
+            "dining": "None",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹3L"
+        },
+        {
+            "id": 9,
+            "bank": "IndusInd",
+            "name": "Platinum Aura Edge Credit Card",
+            "annual_fee": 0,
+            "rating": 3.8,
+            "is_premium": false,
+            "rewards_rate": "1% cashback on retail",
+            "cashback": {
+                "fuel": "1% surcharge waiver",
+                "online": "None"
+            },
+            "lounge_access": "Available",
+            "fuel_benifits": "1% surcharge waiver",
+            "dining": "Available",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹5L"
+        },
+        {
+            "id": 10,
+            "bank": "Federal Bank",
+            "name": "VISA Signet Credit Card",
+            "annual_fee": 0,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "3x rewards on Electronics/Apparel",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "1 quarterly domestic",
+            "fuel_benifits": "None",
+            "dining": "Available",
+            "insurance": "None",
+            "eligibility": "Annual income > ₹4L"
+        }
+    ]
 ]
