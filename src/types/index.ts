@@ -8,11 +8,12 @@ export interface CardData {
     rewards_rate: string;
     cashback: {
         fuel: string;
+        online: string;
     };
     lounge_access: string;
     fuel_benifits: string;
     dining: string;
-    insurance: string
+    insurance: string;
     eligibility: string;
 }
 
@@ -20,6 +21,7 @@ export interface Message {
     role: "user" | "bot";
     content: string;
     cardData?: CardData[];
+    isComparison?: boolean;
 }
 
 export interface CreditCardDetailCardProps {
