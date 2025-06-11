@@ -67,10 +67,10 @@ export default function AvailableCardsSection() {
     }, [searchQuery, selectedBank, sortBy, showLoungeAccess, showFuelSurchargeWaiver, showNoAnnualFee, showForFirstTimeUsers]);
 
     return (
-        <section className="container mx-auto px-10 py-16 bg-black text-white">
+        <section className="container mx-auto px-10 max-sm:px-2 py-16 bg-black text-white">
             <div className="mb-12">
-                <h2 className="text-5xl font-bold text-center">Available Credit Cards</h2>
-                <p className="text-white/50 mt-1 text-lg text-center">You&apos;ll find the cards of all categories</p>
+                <h2 className="text-5xl max-sm:text-2xl font-bold text-center">Available Credit Cards</h2>
+                <p className="text-white/50 mt-1 text-lg max-sm:text-sm text-center">You&apos;ll find the cards of all categories</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4 items-center">
@@ -84,7 +84,7 @@ export default function AvailableCardsSection() {
                         name="search"
                     />
                 </div>
-                <div className="w-[22vw]">
+                <div className="w-[22vw] max-sm:w-full">
                     <label htmlFor="banks" className="mb-1">Banks</label>
                     <Select value={selectedBank} onValueChange={setSelectedBank} name="banks">
                         <SelectTrigger className="bg-[#151515] border-white/20 placeholder:text-white/60">
@@ -105,7 +105,7 @@ export default function AvailableCardsSection() {
                         </SelectContent>
                     </Select>
                 </div>
-                <div className="w-[22vw]">
+                <div className="w-[22vw] max-sm:w-full">
                     <label htmlFor="sort" className="!mb-2">Sort</label>
                     <Select value={sortBy} onValueChange={setSortBy} name="sort">
                         <SelectTrigger className="bg-[#151515] border-white/20 placeholder:text-white/60">
@@ -186,6 +186,7 @@ export default function AvailableCardsSection() {
                             isPremium={card.is_premium}
                             benefits={benefits.length > 0 ? benefits : [{ icon: null, label: "No benefits" }]}
                             rewards={{ rate: card.rewards_rate || 'N/A', details: "4 points per ₹150" }}
+                            summary={card.summary}
                         />
                     )
                 })}

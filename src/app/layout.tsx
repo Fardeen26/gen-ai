@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${bricolage_grotesque_init.className}`}
+        className={`${bricolage_grotesque_init.className} bg-black`}
       >
         {children}
       </body>

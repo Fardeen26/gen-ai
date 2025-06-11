@@ -15,6 +15,7 @@ export interface CardData {
     dining: string;
     insurance: string;
     eligibility: string;
+    summary: string;
 }
 
 export interface Message {
@@ -33,4 +34,5 @@ export interface CreditCardDetailCardProps {
     isPremium?: boolean;
     benefits: { icon: React.ReactNode; label: string }[];
     rewards: { rate: string; details: string };
+    summary: string
 }

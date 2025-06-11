@@ -89,8 +89,8 @@ export default function SearchCard() {
     }, [messages]);
 
     return (
-        <div className="flex flex-col h-[calc(100vh-2.5rem)] mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto bg-background rounded-xl sm:rounded-2xl  relative !overflow-hidden">
-            <ScrollAreaPrimitive.Root className="flex-1 px-0 pt-4 sm:pt-8 pb-4 overflow-y-auto" style={{ height: "calc(100vh-120px)" }}>
+        <div className="flex flex-col h-[calc(100vh-2.5rem)] mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto rounded-xl sm:rounded-2xl  relative !overflow-hidden bg-black text-white">
+            <ScrollAreaPrimitive.Root className="flex-1 px-0 pt-4 sm:pt-8 pb-4 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{ height: "calc(100vh-120px)" }}>
                 <ScrollAreaPrimitive.Viewport className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-8">
                     {messages.map((message, index) => (
                         <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -104,7 +104,7 @@ export default function SearchCard() {
                                     )}
                                 </div>
                                 <div className="flex flex-col gap-2 py-2">
-                                    <div className={`${message.role === "user" ? "bg-gradient-to-br from-blue-700 to-blue-500 text-white" : "bg-gradient-to-br from-gray-200 to-gray-100 text-gray-800"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-2xl text-sm shadow`}>
+                                    <div className={`${message.role === "user" ? "bg-gradient-to-br from-blue-700 to-blue-500 text-white" : "bg-gradient-to-br bg-gray-400/20"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-2xl text-sm shadow`}>
                                         {message.content}
                                     </div>
                                     {message.cardData && Array.isArray(message.cardData) && (
@@ -184,6 +184,7 @@ export default function SearchCard() {
                                                                 isPremium={card.is_premium}
                                                                 benefits={benefits.length > 0 ? benefits : [{ icon: null, label: "No benefits" }]}
                                                                 rewards={{ rate: card.rewards_rate || 'N/A', details: "4 points per ₹150" }}
+                                                                summary=""
                                                             />
                                                         );
                                                     })}
@@ -205,13 +206,11 @@ export default function SearchCard() {
                     ))}
                     <div ref={scrollToBottomRef} />
                 </ScrollAreaPrimitive.Viewport>
-                <ScrollAreaPrimitive.Scrollbar orientation="vertical" className="hidden" />
-                <ScrollAreaPrimitive.Corner className="hidden" />
             </ScrollAreaPrimitive.Root>
 
-            <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 border-t bg-white rounded-b-xl sm:rounded-b-2xl">
+            <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-b-xl sm:rounded-b-2xl">
                 <Input
-                    className="flex-1 rounded-full bg-gray-200 border-none focus:ring-2 focus:ring-blue-200 text-sm sm:text-base px-4 sm:px-5 py-2 sm:py-3"
+                    className="flex-1 rounded-full bg-[#151515] border-white/20 placeholder:text-white/60border-none focus:ring-2 focus:ring-blue-200 sm:text-base px-4 sm:px-5 py-2 sm:py-3 placeholder:text-sm"
                     placeholder="Ask me about credit cards..."
                     value={query}
                     onChange={e => setQuery(e.target.value)}
@@ -221,8 +220,8 @@ export default function SearchCard() {
                         }
                     }}
                 />
-                <Button size="icon" className="rounded-full bg-blue-600 text-white hover:bg-blue-700 w-9 h-9 sm:w-10 sm:h-10" onClick={handleSubmit}>
-                    {isLoading ? <CircleStop className="w-4 h-4 sm:w-5 sm:h-5 text-xs animate-pulse" /> : <Send className="w-4 h-4 sm:w-5 sm:h-5" />}
+                <Button size="icon" className="rounded-full bg-white text-black w-8 h-8 sm:w-10 sm:h-10" onClick={handleSubmit}>
+                    {isLoading ? <CircleStop className="w-4 h-4 sm:w-5 sm:h-5 text-xs animate-pulse" /> : <Send width={10} height={10} className="w-3 h-3 sm:w-5 sm:h-5" />}
                 </Button>
             </div>
         </div>

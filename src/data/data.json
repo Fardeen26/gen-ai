@@ -16,7 +16,8 @@
             "fuel_benifits": "None",
             "dining": "Available",
             "insurance": "None",
-            "eligibility": "Annual income > ₹12L"
+            "eligibility": "Annual income > ₹12L",
+            "summary": "A premium lifestyle card ideal for frequent travelers and high-income individuals. Offers 12 domestic and 6 international airport lounge accesses via Priority Pass, great for international travel. Though there’s no cashback, it provides 4 reward points per ₹150 spent and strong dining benefits. Best suited for users with annual income above ₹12L looking for premium perks and rewards."
         },
         {
             "id": 2,
@@ -34,7 +35,8 @@
             "fuel_benifits": "1% surcharge waiver on transactions Rs. 500 to Rs. 3000, max benefit Rs. 3500/year",
             "dining": "Available",
             "insurance": "None",
-            "eligibility": "Annual income > ₹3L"
+            "eligibility": "Annual income > ₹3L",
+            "summary": "Perfect for fashion lovers who shop frequently on Myntra. Offers 5% cashback on Myntra and select online partners, with a modest annual fee of ₹500. Includes 4 complimentary domestic lounge accesses and 1% fuel surcharge waiver. Geared toward young professionals or first-time credit card users with income above ₹3L."
         },
         {
             "id": 3,
@@ -52,7 +54,8 @@
             "fuel_benifits": "1% surcharge waiver at all petrol pumps in India",
             "dining": "Available",
             "insurance": "None",
-            "eligibility": "Monthly income > ₹25,000 for ICICI customers, > ₹35,000 for others"
+            "eligibility": "Monthly income > ₹25,000 for ICICI customers, > ₹35,000 for others",
+            "summary": "A lifetime free card with strong benefits for Amazon shoppers. Earn up to 5% cashback on Amazon purchases for Prime members and 1% fuel surcharge waiver across pumps. Though it lacks lounge access, it's a zero-maintenance card ideal for everyday online shopping. Requires a minimum monthly income of ₹25K–₹35K."
         },
         {
             "id": 4,
@@ -70,7 +73,8 @@
             "fuel_benifits": "1% fuel surcharge waiver on transactions Rs. 500 - Rs. 3,000, max Rs. 100 per statement cycle",
             "dining": "None",
             "insurance": "None",
-            "eligibility": "Annual income > ₹3L"
+            "eligibility": "Annual income > ₹3L",
+            "summary": "Focused purely on cashback for online spenders, this card offers 5% flat cashback on online purchases with no reward points. Fuel benefits are modest, and it lacks lounge and dining perks. With a ₹999 fee, it’s best for online-heavy spenders who want simple and direct savings. Suitable for users earning above ₹3L annually."
         },
         {
             "id": 5,
@@ -88,7 +92,8 @@
             "fuel_benifits": "None",
             "dining": "Available",
             "insurance": "None",
-            "eligibility": "Annual income > ₹15L"
+            "eligibility": "Annual income > ₹15L",
+            "summary": "A premium travel-focused card with benefits like 5 EDGE Miles per ₹100 spent on travel, and access to 30 airport lounges (18 domestic + 12 international). Annual fee is steep at ₹5,000, but rewards make it worthwhile for frequent fliers. No cashback or fuel perks. Best for high-income professionals with annual income over ₹15L."
         },
         {
             "id": 6,
@@ -106,7 +111,8 @@
             "fuel_benifits": "None",
             "dining": "Available",
             "insurance": "None",
-            "eligibility": "Annual income > ₹25L"
+            "eligibility": "Annual income > ₹25L",
+            "summary": "Ultra-premium card offering unlimited global lounge access, exclusive concierge, and Membership Rewards Points for luxury spending. No direct cashback or fuel perks, but unmatched in lifestyle benefits. At ₹66,000 annually, it’s targeted at HNIs (High Net-worth Individuals) with income exceeding ₹25L."
         },
         {
             "id": 7,
@@ -124,7 +130,8 @@
             "fuel_benifits": "None",
             "dining": "Available",
             "insurance": "None",
-            "eligibility": "Annual income > ₹3L"
+            "eligibility": "Annual income > ₹3L",
+            "summary": "A zero annual fee card designed for savings on food and entertainment. Offers 5x rewards on groceries, and 10% cashback on Zomato and BookMyShow, making it perfect for families or frequent diners. Lacks travel or fuel benefits but solid for lifestyle users with ₹3L+ income."
         },
         {
             "id": 8,
@@ -142,7 +149,8 @@
             "fuel_benifits": "1% surcharge waiver",
             "dining": "None",
             "insurance": "None",
-            "eligibility": "Annual income > ₹3L"
+            "eligibility": "Annual income > ₹3L",
+            "summary": "Basic no-fee cashback card with 3% cashback on e-commerce sites and 1% fuel surcharge waiver. It lacks travel, dining, or lounge perks, but is a decent starter card for budget-conscious individuals or students with income over ₹3L."
         },
         {
             "id": 9,
@@ -160,7 +168,8 @@
             "fuel_benifits": "1% surcharge waiver",
             "dining": "Available",
             "insurance": "None",
-            "eligibility": "Annual income > ₹5L"
+            "eligibility": "Annual income > ₹5L",
+            "summary": "Free credit card offering 1% flat cashback on retail spends, 1% fuel surcharge waiver, and limited lounge access. It's suitable for those who want straightforward cashback and basic lifestyle privileges without an annual fee. Recommended for users with income above ₹5L."
         },
         {
             "id": 10,
@@ -178,7 +187,8 @@
             "fuel_benifits": "None",
             "dining": "Available",
             "insurance": "None",
-            "eligibility": "Annual income > ₹4L"
+            "eligibility": "Annual income > ₹4L",
+            "summary": "Targeted at value-seeking shoppers, this card offers 3x reward points on electronics and apparel. Comes with one complimentary domestic lounge access per quarter. No cashback or insurance, but still solid for salaried professionals earning ₹4L+ per year looking for a free card with decent benefits."
         }
     ]
 ]
