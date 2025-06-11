@@ -11,6 +11,8 @@ import axios from 'axios'
 import { Message } from "@/types"
 import { BENEFIT_CONFIG } from "@/config/benifits"
 import { extractJsonFromAIResponse } from "@/lib/jsonFormatter"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
+
 
 export default function SearchCard() {
     const [messages, setMessages] = useState<Message[]>([
@@ -40,13 +42,26 @@ export default function SearchCard() {
             const cardData = extractJsonFromAIResponse(response.data.results)
 
             if (cardData.type === "cards") {
-                console.log("card data inside card", cardData)
                 botMessage = {
                     role: "bot",
-                    content: `I found ${cardData.results.length} credit card${cardData.length > 1 ? 's' : ''} matching your requirements:`,
+                    content: cardData.summary || `I found ${cardData.results.length} credit card${cardData.results.length > 1 ? 's' : ''} matching your requirements:`,
                     cardData: cardData.results
                 };
+            } else if (cardData.type === "comparison") {
+                let content = cardData.summary || "Here's a comparison of the requested credit cards:";
+
+                if (cardData.missing_cards && cardData.missing_cards.length > 0) {
+                    content += `\n\nNote: The following cards were not found in our database: ${cardData.missing_cards.join(", ")}`;
+                }
+
+                botMessage = {
+                    role: "bot",
+                    content: content,
+                    cardData: cardData.results,
+                    isComparison: true
+                };
             } else if (cardData.type === "text") {
+                console.log("inside table", cardData.results)
                 botMessage = {
                     role: "bot",
                     content: cardData.content
@@ -93,27 +108,88 @@ export default function SearchCard() {
                                         {message.content}
                                     </div>
                                     {message.cardData && Array.isArray(message.cardData) && (
-                                        <div className="flex flex-row flex-wrap gap-3 sm:gap-4">
-                                            {message.cardData.map((card, cardIndex) => {
-                                                const benefits = BENEFIT_CONFIG
-                                                    .filter(cfg => ((card as unknown) as Record<string, unknown>)[cfg.key] && ((card as unknown) as Record<string, unknown>)[cfg.key] !== "None")
-                                                    .map(cfg => ({ icon: cfg.icon, label: cfg.label }));
+                                        message.isComparison ? (
+                                            <div className="w-full overflow-x-auto">
+                                                <Table>
+                                                    <TableHeader>
+                                                        <TableRow>
+                                                            <TableHead>Feature</TableHead>
+                                                            {message.cardData.map((card, index) => (
+                                                                <TableHead key={index} className="min-w-[200px]">{card.name}</TableHead>
+                                                            ))}
+                                                        </TableRow>
+                                                    </TableHeader>
+                                                    <TableBody>
+                                                        <TableRow>
+                                                            <TableCell className="font-medium">Bank</TableCell>
+                                                            {message.cardData.map((card, index) => (
+                                                                <TableCell key={index}>{card.bank}</TableCell>
+                                                            ))}
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell className="font-medium">Annual Fee</TableCell>
+                                                            {message.cardData.map((card, index) => (
+                                                                <TableCell key={index}>₹{card.annual_fee}</TableCell>
+                                                            ))}
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell className="font-medium">Rewards Rate</TableCell>
+                                                            {message.cardData.map((card, index) => (
+                                                                <TableCell key={index}>{card.rewards_rate || 'None'}</TableCell>
+                                                            ))}
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell className="font-medium">Lounge Access</TableCell>
+                                                            {message.cardData.map((card, index) => (
+                                                                <TableCell key={index}>{card.lounge_access || 'None'}</TableCell>
+                                                            ))}
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell className="font-medium">Fuel Benefits</TableCell>
+                                                            {message.cardData.map((card, index) => (
+                                                                <TableCell key={index}>{card.fuel_benifits || 'None'}</TableCell>
+                                                            ))}
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell className="font-medium">Dining</TableCell>
+                                                            {message.cardData.map((card, index) => (
+                                                                <TableCell key={index}>{card.dining || 'None'}</TableCell>
+                                                            ))}
+                                                        </TableRow>
+                                                        <TableRow>
+                                                            <TableCell className="font-medium">Eligibility</TableCell>
+                                                            {message.cardData.map((card, index) => (
+                                                                <TableCell key={index}>{card.eligibility}</TableCell>
+                                                            ))}
+                                                        </TableRow>
+                                                    </TableBody>
+                                                </Table>
+                                            </div>
+                                        ) : (
+                                            <div className="flex flex-col gap-4">
+                                                <div className="flex flex-row flex-wrap gap-3 sm:gap-4">
+                                                    {message.cardData.map((card, cardIndex) => {
+                                                        const benefits = BENEFIT_CONFIG
+                                                            .filter(cfg => ((card as unknown) as Record<string, unknown>)[cfg.key] && ((card as unknown) as Record<string, unknown>)[cfg.key] !== "None")
+                                                            .map(cfg => ({ icon: cfg.icon, label: cfg.label }));
 
-                                                return (
-                                                    <CreditCardDetailCard
-                                                        key={cardIndex}
-                                                        cardName={card.name || 'N/A'}
-                                                        bankName={card.bank || 'N/A'}
-                                                        annualFee={`₹${card.annual_fee || 0}`}
-                                                        minIncome={card.eligibility || 'N/A'}
-                                                        rating={card.rating}
-                                                        isPremium={card.is_premium}
-                                                        benefits={benefits.length > 0 ? benefits : [{ icon: null, label: "No benefits" }]}
-                                                        rewards={{ rate: card.rewards_rate || 'N/A', details: "4 points per ₹150" }}
-                                                    />
-                                                );
-                                            })}
-                                        </div>
+                                                        return (
+                                                            <CreditCardDetailCard
+                                                                key={cardIndex}
+                                                                cardName={card.name || 'N/A'}
+                                                                bankName={card.bank || 'N/A'}
+                                                                annualFee={`₹${card.annual_fee || 0}`}
+                                                                minIncome={card.eligibility || 'N/A'}
+                                                                rating={card.rating}
+                                                                isPremium={card.is_premium}
+                                                                benefits={benefits.length > 0 ? benefits : [{ icon: null, label: "No benefits" }]}
+                                                                rewards={{ rate: card.rewards_rate || 'N/A', details: "4 points per ₹150" }}
+                                                            />
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )
                                     )}
                                 </div>
                                 <div className="absolute top-2 right-0">
