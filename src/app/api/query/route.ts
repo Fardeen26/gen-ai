@@ -58,6 +58,13 @@ export async function POST(req: NextRequest) {
         1. Provide a detailed summary of each card's key features and benefits
         2. Highlight what makes each card unique
         
+        Important formatting instructions:
+        1. Use plain text only - do not use markdown symbols like *, -, or any other special formatting characters
+        2. Write in clear, well-structured paragraphs
+        3. Use proper spacing and line breaks for readability
+        4. Avoid using any special characters or symbols for emphasis
+        5. Keep the language simple and professional
+        
         Always wrap your response in a JSON object with appropriate type and fields.
       `;
 
