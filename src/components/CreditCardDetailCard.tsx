@@ -12,11 +12,11 @@ export default function CreditCardDetailCard({
     rewards,
 }: CreditCardDetailCardProps) {
     return (
-        <div className="w-full sm:w-[320px] bg-white/10 shadow-lg ring-1 ring-black/5 text-white rounded-2xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 border border-white/20">
-            <div className="flex-grow flex flex-col gap-3 sm:gap-4">
+        <div className="w-full sm:w-[320px] bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl p-4 sm:p-6 flex flex-col border border-white/20">
+            <div className="flex-grow mb-1 flex flex-col gap-3 sm:gap-4">
                 <div className="flex justify-between items-center mb-1 sm:mb-2">
                     {isPremium ? (
-                        <span className="bg-gradient-to-r from-amber-400/20 via-amber-300/20 to-amber-200/20 text-amber-300 text-xs font-semibold px-2 sm:px-3 py-1 rounded-md border border-amber-500/20 hover:border-amber-500/30 transition-all duration-300">PREMIUM</span>
+                        <span className="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-300 text-black text-xs font-semibold px-2 sm:px-3 py-1 rounded-md shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 transition-all duration-300">PREMIUM</span>
                     ) : <span />}
                     <span className="flex items-center gap-1 text-yellow-400 font-semibold text-sm">
                         <Star className="w-4 h-4 fill-yellow-300 stroke-yellow-400" />

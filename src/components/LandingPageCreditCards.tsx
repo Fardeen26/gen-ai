@@ -68,7 +68,6 @@ export default function LandingPageCreditCard({
                 </div>
             </div>
 
-            {/* Summary Dialog */}
             {showSummary && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
                     <div className="bg-[#151515] border border-white/10 text-white rounded-lg px-8 py-10 max-w-2xl w-full mx-4 relative">

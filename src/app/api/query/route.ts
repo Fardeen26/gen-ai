@@ -6,19 +6,19 @@ import { checkRateLimit } from "@/lib/rateLimiter";
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export async function POST(req: NextRequest) {
-    try {
-        const ip = req.headers.get("x-forwarded-for") ?? "127.0.0.1";
+  try {
+    const ip = req.headers.get("x-forwarded-for") ?? "127.0.0.1";
 
-        if (!checkRateLimit(ip)) {
-            return NextResponse.json(
-                { error: "Too many requests. Please try again in a minute." },
-                { status: 429 }
-            );
-        }
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again in a minute." },
+        { status: 429 }
+      );
+    }
 
-        const { query } = await req.json();
+    const { query } = await req.json();
 
-        const prompt = `
+    const prompt = `
         You are a credit card recommendation assistant. Based on the user's query and the provided credit card data, provide a response in one of these formats:
 
         1. For queries that need card recommendations or comparisons, return a JSON response with:
@@ -61,22 +61,22 @@ export async function POST(req: NextRequest) {
         Always wrap your response in a JSON object with appropriate type and fields.
       `;
 
-        const response = await ai.models.generateContent({
-            model: "gemini-2.0-flash",
-            contents: prompt,
-            config: {
-                responseModalities: [Modality.TEXT],
-            },
-        });
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: prompt,
+      config: {
+        responseModalities: [Modality.TEXT],
+      },
+    });
 
-        const content = response?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (!content) {
-            throw new Error('Invalid response format from AI model');
-        }
-
-        return Response.json({ results: content || [] });
-    } catch (error) {
-        console.error('Error processing query:', error);
-        return Response.json({ error: "Failed to process query" }, { status: 500 });
+    const content = response?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!content) {
+      throw new Error('Invalid response format from AI model');
     }
+
+    return Response.json({ results: content || [] });
+  } catch (error) {
+    console.error('Error processing query:', error);
+    return Response.json({ error: "Failed to process query" }, { status: 500 });
+  }
 }

@@ -14,7 +14,9 @@ import { extractJsonFromAIResponse } from "@/lib/jsonFormatter"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table"
 
 
-export default function SearchCard() {
+export default function SearchCard({ isHomePage = false }: {
+    isHomePage: boolean
+}) {
     const [messages, setMessages] = useState<Message[]>([
         {
             role: "bot",
@@ -89,7 +91,7 @@ export default function SearchCard() {
     }, [messages]);
 
     return (
-        <div className="flex flex-col h-[calc(100vh-2.5rem)] mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto rounded-xl sm:rounded-2xl  relative !overflow-hidden bg-black text-white">
+        <div className={`flex flex-col ${isHomePage ? 'h-auto' : 'h-[calc(100vh-2.5rem)]'} mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto rounded-xl sm:rounded-2xl  relative !overflow-hidden bg-black text-white`}>
             <ScrollAreaPrimitive.Root className="flex-1 px-0 pt-4 sm:pt-8 pb-4 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{ height: "calc(100vh-120px)" }}>
                 <ScrollAreaPrimitive.Viewport className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-8">
                     {messages.map((message, index) => (
@@ -112,51 +114,51 @@ export default function SearchCard() {
                                             <div className="w-full overflow-x-auto">
                                                 <Table>
                                                     <TableHeader>
-                                                        <TableRow>
-                                                            <TableHead>Feature</TableHead>
+                                                        <TableRow className="hover:bg-white/10">
+                                                            <TableHead className="text-white font-semibold">Feature</TableHead>
                                                             {message.cardData.map((card, index) => (
-                                                                <TableHead key={index} className="min-w-[200px]">{card.name}</TableHead>
+                                                                <TableHead key={index} className="min-w-[200px] text-white font-semibold">{card.name}</TableHead>
                                                             ))}
                                                         </TableRow>
                                                     </TableHeader>
                                                     <TableBody>
-                                                        <TableRow>
+                                                        <TableRow className="hover:bg-white/10">
                                                             <TableCell className="font-medium">Bank</TableCell>
                                                             {message.cardData.map((card, index) => (
                                                                 <TableCell key={index}>{card.bank}</TableCell>
                                                             ))}
                                                         </TableRow>
-                                                        <TableRow>
+                                                        <TableRow className="hover:bg-white/10">
                                                             <TableCell className="font-medium">Annual Fee</TableCell>
                                                             {message.cardData.map((card, index) => (
                                                                 <TableCell key={index}>₹{card.annual_fee}</TableCell>
                                                             ))}
                                                         </TableRow>
-                                                        <TableRow>
+                                                        <TableRow className="hover:bg-white/10">
                                                             <TableCell className="font-medium">Rewards Rate</TableCell>
                                                             {message.cardData.map((card, index) => (
                                                                 <TableCell key={index}>{card.rewards_rate || 'None'}</TableCell>
                                                             ))}
                                                         </TableRow>
-                                                        <TableRow>
+                                                        <TableRow className="hover:bg-white/10">
                                                             <TableCell className="font-medium">Lounge Access</TableCell>
                                                             {message.cardData.map((card, index) => (
                                                                 <TableCell key={index}>{card.lounge_access || 'None'}</TableCell>
                                                             ))}
                                                         </TableRow>
-                                                        <TableRow>
+                                                        <TableRow className="hover:bg-white/10">
                                                             <TableCell className="font-medium">Fuel Benefits</TableCell>
                                                             {message.cardData.map((card, index) => (
                                                                 <TableCell key={index}>{card.fuel_benifits || 'None'}</TableCell>
                                                             ))}
                                                         </TableRow>
-                                                        <TableRow>
+                                                        <TableRow className="hover:bg-white/10">
                                                             <TableCell className="font-medium">Dining</TableCell>
                                                             {message.cardData.map((card, index) => (
                                                                 <TableCell key={index}>{card.dining || 'None'}</TableCell>
                                                             ))}
                                                         </TableRow>
-                                                        <TableRow>
+                                                        <TableRow className="hover:bg-white/10">
                                                             <TableCell className="font-medium">Eligibility</TableCell>
                                                             {message.cardData.map((card, index) => (
                                                                 <TableCell key={index}>{card.eligibility}</TableCell>
@@ -208,9 +210,9 @@ export default function SearchCard() {
                 </ScrollAreaPrimitive.Viewport>
             </ScrollAreaPrimitive.Root>
 
-            <div className="flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-b-xl sm:rounded-b-2xl">
+            <div className="flex items-center justify-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-b-xl sm:rounded-b-2xl">
                 <Input
-                    className="flex-1 rounded-full bg-[#151515] border-white/20 placeholder:text-white/60border-none focus:ring-2 focus:ring-blue-200 sm:text-base px-4 sm:px-5 py-2 sm:py-3 placeholder:text-sm"
+                    className="max-w-4xl rounded-full bg-[#151515] border-white/20 placeholder:text-white/60 focus:ring-2 focus:ring-blue-200 sm:text-base px-4 sm:px-5 py-2 sm:py-3 placeholder:text-sm"
                     placeholder="Ask me about credit cards..."
                     value={query}
                     onChange={e => setQuery(e.target.value)}
@@ -220,7 +222,7 @@ export default function SearchCard() {
                         }
                     }}
                 />
-                <Button size="icon" className="rounded-full bg-white text-black w-8 h-8 sm:w-10 sm:h-10" onClick={handleSubmit}>
+                <Button size="icon" className="rounded-full bg-white hover:bg-white/80 text-black w-8 h-8 sm:w-10 sm:h-10" onClick={handleSubmit}>
                     {isLoading ? <CircleStop className="w-4 h-4 sm:w-5 sm:h-5 text-xs animate-pulse" /> : <Send width={10} height={10} className="w-3 h-3 sm:w-5 sm:h-5" />}
                 </Button>
             </div>

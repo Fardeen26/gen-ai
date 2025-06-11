@@ -47,7 +47,7 @@ export default function AvailableCardsSection() {
         }
 
         if (showForFirstTimeUsers) {
-            cards = cards.filter((card) => !card.is_premium); // Example filter: non-premium cards for first-time users
+            cards = cards.filter((card) => !card.is_premium);
         }
 
         cards.sort((a, b) => {
@@ -69,8 +69,10 @@ export default function AvailableCardsSection() {
     return (
         <section className="container mx-auto px-10 max-sm:px-2 py-16 bg-black text-white">
             <div className="mb-12">
-                <h2 className="text-5xl max-sm:text-2xl font-bold text-center">Available Credit Cards</h2>
-                <p className="text-white/50 mt-1 text-lg max-sm:text-sm text-center">You&apos;ll find the cards of all categories</p>
+                <h2 className="text-5xl max-sm:text-2xl font-bold text-center">Available Credit&nbsp;
+                    <span className="bg-gradient-to-r from-[#DCE9F8] to-[#0A61CB] bg-clip-text text-transparent">Cards</span>
+                </h2>
+                <p className="text-white/80 mt-1 text-lg max-sm:text-sm text-center">You&apos;ll find the cards of all categories</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-4 items-center">
