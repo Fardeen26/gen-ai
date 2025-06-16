@@ -105,7 +105,7 @@ export default function SearchCard({ isHomePage = false }: {
                                     )}
                                 </div>
                                 <div className="flex flex-col gap-2 py-2">
-                                    <div className={`${message.role === "user" ? "bg-gradient-to-br from-blue-700 to-blue-500 text-white" : "bg-gradient-to-br bg-gray-400/20"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-2xl text-sm shadow`}>
+                                    <div className={`${message.role === "user" ? "bg-gradient-to-br from-blue-700 to-blue-500 text-white" : "bg-gradient-to-br bg-gray-400/20"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-3xl text-sm shadow`}>
                                         {message.content}
                                     </div>
                                     {message.cardData && Array.isArray(message.cardData) && (

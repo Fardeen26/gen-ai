@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
       `;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-pro",
+      model: "gemini-2.0-flash",
       contents: prompt,
       config: {
         responseModalities: [Modality.TEXT],
