@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Card } from "@/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-// import { formatCurrency } from "@/lib/utils";
 
 const COLORS = ["#0088FE", "#FF8042"];
 

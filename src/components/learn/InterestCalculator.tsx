@@ -27,18 +27,16 @@ export default function InterestCalculator() {
 
     const calculatePayments = (): PaymentData[] => {
         const monthlyRate = interestRate / 100 / 12;
-        const minimumPayment = balance * 0.05; // 5% minimum payment
+        const minimumPayment = balance * 0.05;
         const data: PaymentData[] = [];
 
         let minBalance = balance;
         let fullBalance = balance;
 
         for (let month = 1; month <= 12; month++) {
-            // Calculate minimum payment scenario
             minBalance = minBalance * (1 + monthlyRate) - minimumPayment;
             if (minBalance < 0) minBalance = 0;
 
-            // Calculate full payment scenario
             fullBalance = fullBalance * (1 + monthlyRate) - monthlyPayment;
             if (fullBalance < 0) fullBalance = 0;
 
@@ -111,7 +109,7 @@ export default function InterestCalculator() {
                 </div>
             </div>
 
-            <Card className="p-4 bg-gray-400/10 border-none">
+            <Card className="p-4 bg-gray-400/10 border border-white/20">
                 <div className="h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={paymentData}>

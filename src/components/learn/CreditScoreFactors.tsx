@@ -90,7 +90,7 @@ export default function CreditScoreFactors() {
                 </p>
             </div>
 
-            <Card className="p-4">
+            <Card className="p-4 bg-gray-400/10 border-white/20 text-white">
                 <div className="h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart
@@ -121,7 +121,7 @@ export default function CreditScoreFactors() {
             </Card>
 
             <div className="grid gap-6 md:grid-cols-2">
-                <Card className="p-4">
+                <Card className="py-4 px-6 bg-gray-400/10 border-white/20 text-white">
                     <h3 className="text-lg font-medium mb-4">Factor Explanations</h3>
                     <div className="space-y-4">
                         {scoreFactors.map((factor, index) => (
@@ -135,8 +135,8 @@ export default function CreditScoreFactors() {
                     </div>
                 </Card>
 
-                <Card className="p-4">
-                    <h3 className="text-lg font-medium mb-4">Do's and Don'ts</h3>
+                <Card className="py-4 px-6 bg-gray-400/10 border-white/20 text-white">
+                    <h3 className="text-lg font-medium mb-4">Do&apos;s and Don&apos;ts</h3>
                     <div className="space-y-4">
                         {doAndDonts.map((item, index) => (
                             <div key={index} className="flex items-center gap-3">
@@ -150,7 +150,7 @@ export default function CreditScoreFactors() {
                 </Card>
             </div>
 
-            <Card className="p-4 bg-muted">
+            <Card className="p-4 bg-gray-400/10 border-none text-white">
                 <h3 className="text-lg font-medium mb-2">Pro Tips</h3>
                 <ul className="list-disc list-inside space-y-2">
                     <li>Check your credit report regularly for errors</li>

@@ -17,7 +17,7 @@ export default function Home() {
           <Link href="/" className="hover:text-blue-400 transition-colors">Home</Link>
           <Link href="/cards" className="hover:text-blue-400 transition-colors">Available Cards</Link>
           <Link href="/assistant" className="hover:text-blue-400 transition-colors">AI assistant</Link>
-          <Link href="/learn" className="hover:text-blue-400 transition-colors">Learn</Link>
+          <Link href="/learn" className="hover:text-blue-400 transition-colors">Credit School</Link>
         </nav>
 
         <div className="space-x-4">
@@ -41,9 +41,9 @@ export default function Home() {
               AI assistant
             </Button>
           </Link>
-          <Link href='/cards'>
+          <Link href='/learn'>
             <Button className="px-4 w-full sm:w-40 h-10 py-1 text-sm rounded-md border border-gray-600 text-white font-semibold hover:bg-black/80 transition-colors">
-              Browse
+              Credit School
             </Button>
           </Link>
         </div>

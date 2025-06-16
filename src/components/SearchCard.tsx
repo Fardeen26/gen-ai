@@ -84,10 +84,10 @@ export default function SearchCard({ isHomePage = false }: {
     }
 
     useEffect(() => {
-        if (scrollToBottomRef.current) {
+        if (scrollToBottomRef.current && !isHomePage) {
             scrollToBottomRef.current.scrollIntoView({ behavior: "auto" });
         }
-    }, [messages]);
+    }, [messages, isHomePage]);
 
     return (
         <div className={`flex flex-col ${isHomePage ? 'h-auto' : 'h-[calc(100vh-2.5rem)]'} mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto rounded-xl sm:rounded-2xl  relative !overflow-hidden bg-black text-white`}>

@@ -22,7 +22,7 @@ export default function LearnPage() {
         >
             <div className="mb-8">
                 <Link href="/">
-                    <Button variant="ghost" className="mb-4">
+                    <Button variant="ghost" className="mb-4 hover:bg-transparent hover:text-white/90">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back to Home
                     </Button>
@@ -34,13 +34,15 @@ export default function LearnPage() {
             </div>
 
             <Tabs defaultValue="apr" className="w-full">
-                <TabsList className="grid w-full grid-cols-5 mb-8 bg-[#151515] border-white/20">
-                    <TabsTrigger value="apr">APR Basics</TabsTrigger>
-                    <TabsTrigger value="interest">Interest Calculation</TabsTrigger>
-                    <TabsTrigger value="fees">Hidden Fees</TabsTrigger>
-                    <TabsTrigger value="types">Card Types</TabsTrigger>
-                    <TabsTrigger value="score">Credit Score</TabsTrigger>
-                </TabsList>
+                <div className="w-full overflow-x-auto mb-8">
+                    <TabsList className="grid grid-cols-5 max-sm:flex max-sm:w-max bg-[#151515] border border-white/10 p-1">
+                        <TabsTrigger value="apr" className="whitespace-nowrap">APR Basics</TabsTrigger>
+                        <TabsTrigger value="interest" className="whitespace-nowrap">Interest Calculation</TabsTrigger>
+                        <TabsTrigger value="fees" className="whitespace-nowrap">Hidden Fees</TabsTrigger>
+                        <TabsTrigger value="types" className="whitespace-nowrap">Card Types</TabsTrigger>
+                        <TabsTrigger value="score" className="whitespace-nowrap">Credit Score</TabsTrigger>
+                    </TabsList>
+                </div>
 
                 <TabsContent value="apr">
                     <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">

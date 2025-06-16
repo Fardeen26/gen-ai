@@ -62,7 +62,7 @@ export default function HiddenFees() {
             <Accordion type="single" collapsible className="w-full">
                 {fees.map((fee, index) => (
                     <AccordionItem key={index} value={`item-${index}`} className="border-none">
-                        <AccordionTrigger className="hover:no-underline bg-gray-400/10 border-white/20 my-1 px-6 rounded-md p-4">
+                        <AccordionTrigger className="hover:no-underline bg-gray-400/10 border border-white/10 my-1 px-6 rounded-md p-4">
                             <div className="flex items-center gap-3">
                                 {fee.icon}
                                 <span className="font-medium">{fee.title}</span>
