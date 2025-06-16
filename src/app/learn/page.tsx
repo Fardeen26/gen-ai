@@ -49,25 +49,25 @@ export default function LearnPage() {
                 </TabsContent>
 
                 <TabsContent value="interest">
-                    <Card className="p-6">
+                    <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
                         <InterestCalculator />
                     </Card>
                 </TabsContent>
 
                 <TabsContent value="fees">
-                    <Card className="p-6">
+                    <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
                         <HiddenFees />
                     </Card>
                 </TabsContent>
 
                 <TabsContent value="types">
-                    <Card className="p-6">
+                    <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
                         <CardTypes />
                     </Card>
                 </TabsContent>
 
                 <TabsContent value="score">
-                    <Card className="p-6">
+                    <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
                         <CreditScoreFactors />
                     </Card>
                 </TabsContent>

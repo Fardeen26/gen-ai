@@ -60,7 +60,7 @@ export default function InterestCalculator() {
                 <h2 className="text-2xl font-semibold mb-4">How Interest Is Calculated</h2>
                 <p className="text-muted-foreground mb-6">
                     Credit card interest compounds on your unpaid balance. The longer you take to pay off your balance,
-                    the more interest you'll pay. See how different payment strategies affect your total debt over time.
+                    the more interest you&apos;ll pay. See how different payment strategies affect your total debt over time.
                 </p>
             </div>
 
@@ -76,6 +76,7 @@ export default function InterestCalculator() {
                         min={1000}
                         max={100000}
                         step={1000}
+                        className="bg-black/20 border border-white/20"
                     />
                 </div>
 
@@ -90,6 +91,7 @@ export default function InterestCalculator() {
                         min={100}
                         max={10000}
                         step={100}
+                        className="bg-black/20 border border-white/20"
                     />
                 </div>
 
@@ -104,11 +106,12 @@ export default function InterestCalculator() {
                         min={5}
                         max={36}
                         step={1}
+                        className="bg-black/20 border border-white/20"
                     />
                 </div>
             </div>
 
-            <Card className="p-4">
+            <Card className="p-4 bg-gray-400/10 border-none">
                 <div className="h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={paymentData}>
@@ -136,7 +139,7 @@ export default function InterestCalculator() {
                 </div>
             </Card>
 
-            <Card className="p-4 bg-muted">
+            <Card className="p-4 bg-gray-400/10 border-none text-white">
                 <h3 className="text-lg font-medium mb-2">Key Takeaways</h3>
                 <ul className="list-disc list-inside space-y-2">
                     <li>Interest compounds on your unpaid balance each month</li>
