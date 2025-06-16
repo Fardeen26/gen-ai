@@ -1,11 +1,5 @@
 "use client";
 
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 import {
     CreditCard,
@@ -13,6 +7,7 @@ import {
     DollarSign,
     Percent,
 } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
 interface FeeInfo {
     title: string;
@@ -66,17 +61,17 @@ export default function HiddenFees() {
 
             <Accordion type="single" collapsible className="w-full">
                 {fees.map((fee, index) => (
-                    <AccordionItem key={index} value={`item-${index}`}>
-                        <AccordionTrigger className="hover:no-underline">
+                    <AccordionItem key={index} value={`item-${index}`} className="border-none">
+                        <AccordionTrigger className="hover:no-underline bg-gray-400/10 border-white/20 my-1 px-6 rounded-md p-4">
                             <div className="flex items-center gap-3">
                                 {fee.icon}
                                 <span className="font-medium">{fee.title}</span>
                             </div>
                         </AccordionTrigger>
                         <AccordionContent>
-                            <Card className="p-4 mt-2">
+                            <Card className="p-4 mt-2 border-none bg-gray-400/10 text-white">
                                 <div className="space-y-4">
-                                    <p className="text-muted-foreground">{fee.description}</p>
+                                    <p className="text-base">{fee.description}</p>
                                     <div>
                                         <h4 className="font-medium mb-1">Example:</h4>
                                         <p className="text-sm">{fee.example}</p>
@@ -92,7 +87,7 @@ export default function HiddenFees() {
                 ))}
             </Accordion>
 
-            <Card className="p-4 bg-muted">
+            <Card className="p-4 bg-gray-400/10 border-none text-white">
                 <h3 className="text-lg font-medium mb-2">Pro Tips</h3>
                 <ul className="list-disc list-inside space-y-2">
                     <li>Always read the fine print before applying for a card</li>
