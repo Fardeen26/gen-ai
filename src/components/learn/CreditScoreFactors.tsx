@@ -90,7 +90,7 @@ export default function CreditScoreFactors() {
                 </p>
             </div>
 
-            <Card className="p-4 bg-gray-400/10 border-white/20 text-white">
+            <Card className="p-4 bg-black border-none text-white">
                 <div className="h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart

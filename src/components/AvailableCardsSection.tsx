@@ -16,6 +16,7 @@ export default function AvailableCardsSection() {
     const [showFuelSurchargeWaiver, setShowFuelSurchargeWaiver] = useState(false);
     const [showNoAnnualFee, setShowNoAnnualFee] = useState(false);
     const [showForFirstTimeUsers, setShowForFirstTimeUsers] = useState(false);
+    const [cardsToShow, setCardsToShow] = useState(8);
 
     const filteredCards = useMemo(() => {
         let cards = [...data[0]];
@@ -172,7 +173,7 @@ export default function AvailableCardsSection() {
                 {
                     filteredCards.length < 1 && <p>No Cards Found :/</p>
                 }
-                {filteredCards.length > 0 && filteredCards.map((card, idx) => {
+                {filteredCards.length > 0 && filteredCards.slice(0, cardsToShow).map((card, idx) => {
                     const benefits = BENEFIT_CONFIG
                         .filter(cfg => ((card as unknown) as Record<string, unknown>)[cfg.key] && ((card as unknown) as Record<string, unknown>)[cfg.key] !== "None")
                         .map(cfg => ({ icon: cfg.icon, label: cfg.label }));
@@ -193,6 +194,16 @@ export default function AvailableCardsSection() {
                     )
                 })}
             </div>
+            {filteredCards.length > cardsToShow && (
+                <div className="w-full flex justify-center mt-8">
+                    <button
+                        onClick={() => setCardsToShow(prev => prev + 8)}
+                        className="px-6 py-2 text-sm bg-gray-400/10 hover:bg-gray-400/15 border border-white/20 text-white rounded-md transition-colors"
+                    >
+                        Load More
+                    </button>
+                </div>
+            )}
         </section>
     );
 } 

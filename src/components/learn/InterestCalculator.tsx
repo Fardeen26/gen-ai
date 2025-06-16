@@ -109,12 +109,12 @@ export default function InterestCalculator() {
                 </div>
             </div>
 
-            <Card className="p-4 bg-gray-400/10 border border-white/20">
+            <Card className="p-4 bg-black border-none">
                 <div className="h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={paymentData}>
+                        <LineChart data={paymentData} className="text-sm">
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="month" />
+                            <XAxis dataKey="month" className="text-sm" />
                             <YAxis />
                             <Tooltip
                                 formatter={(value: number) => `₹${value.toLocaleString()}`}

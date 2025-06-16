@@ -3,6 +3,7 @@ import Image from "next/image";
 import AvailableCardsSection from "@/components/AvailableCardsSection";
 import Link from "next/link";
 import SearchCard from "@/components/SearchCard";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
 
         <div className="space-x-4">
           <Link href='/assistant'>
-            <Button className="px-4 py-2 rounded-md border border-white/20 bg-white/10 hover:bg-white/15 transition-colors">AI Assistant</Button>
+            <Button className="w-full px-6 text-sm rounded-md border border-gray-600/50 text-white font-semibold hover:bg-black/95 transition-colors">AI Assistant</Button>
           </Link>
         </div>
       </header>
@@ -33,7 +34,7 @@ export default function Home() {
           The <span className="bg-gradient-to-r from-[#DCE9F8] to-[#0A61CB] bg-clip-text text-transparent">Only</span> platform for all your credit card related doubts
         </h1>
         <p className="text-base sm:text-lg mb-8 text-gray-400 max-w-2xl">
-          Get resolved all your credit card related doubts powered by AI
+          Get resolved all your credit card and finance related doubts powered by AI
         </p>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
           <Link href='/assistant'>
@@ -51,7 +52,7 @@ export default function Home() {
 
       <AvailableCardsSection />
 
-      <section className="mx-auto max-w-4xl">
+      <section className="mx-auto max-w-4xl mt-6">
         <div className="mb-12">
           <h2 className="text-5xl max-sm:text-2xl font-bold text-center">Leverage the Highly Intelligent <br />
             <span className="bg-gradient-to-r from-[#DCE9F8] to-[#0A61CB] bg-clip-text text-transparent">Ai Assistant</span>
@@ -62,6 +63,8 @@ export default function Home() {
           <SearchCard isHomePage={true} />
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }

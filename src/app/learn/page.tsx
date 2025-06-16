@@ -33,16 +33,28 @@ export default function LearnPage() {
                 </p>
             </div>
 
-            <Tabs defaultValue="apr" className="w-full">
+            <Tabs defaultValue="types" className="w-full">
                 <div className="w-full overflow-x-auto mb-8">
                     <TabsList className="grid grid-cols-5 max-sm:flex max-sm:w-max bg-[#151515] border border-white/10 p-1">
+                        <TabsTrigger value="types" className="whitespace-nowrap">Card Types</TabsTrigger>
+                        <TabsTrigger value="score" className="whitespace-nowrap">Credit Score</TabsTrigger>
                         <TabsTrigger value="apr" className="whitespace-nowrap">APR Basics</TabsTrigger>
                         <TabsTrigger value="interest" className="whitespace-nowrap">Interest Calculation</TabsTrigger>
                         <TabsTrigger value="fees" className="whitespace-nowrap">Hidden Fees</TabsTrigger>
-                        <TabsTrigger value="types" className="whitespace-nowrap">Card Types</TabsTrigger>
-                        <TabsTrigger value="score" className="whitespace-nowrap">Credit Score</TabsTrigger>
                     </TabsList>
                 </div>
+
+                <TabsContent value="types">
+                    <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
+                        <CardTypes />
+                    </Card>
+                </TabsContent>
+
+                <TabsContent value="score">
+                    <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
+                        <CreditScoreFactors />
+                    </Card>
+                </TabsContent>
 
                 <TabsContent value="apr">
                     <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
@@ -59,18 +71,6 @@ export default function LearnPage() {
                 <TabsContent value="fees">
                     <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
                         <HiddenFees />
-                    </Card>
-                </TabsContent>
-
-                <TabsContent value="types">
-                    <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
-                        <CardTypes />
-                    </Card>
-                </TabsContent>
-
-                <TabsContent value="score">
-                    <Card className="p-6 bg-white/0 shadow-lg ring-1 ring-black/5 text-white rounded-2xl flex flex-col border border-white/20">
-                        <CreditScoreFactors />
                     </Card>
                 </TabsContent>
             </Tabs>

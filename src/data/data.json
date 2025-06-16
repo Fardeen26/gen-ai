@@ -189,6 +189,368 @@
             "insurance": "None",
             "eligibility": "Annual income > ₹4L",
             "summary": "Targeted at value-seeking shoppers, this card offers 3x reward points on electronics and apparel. Comes with one complimentary domestic lounge access per quarter. No cashback or insurance, but still solid for salaried professionals earning ₹4L+ per year looking for a free card with decent benefits."
+        },
+        {
+            "id": 11,
+            "bank": "HDFC",
+            "name": "HDFC Diners Club Black Metal Edition Credit Card",
+            "annual_fee": 10000,
+            "rating": 4.5,
+            "is_premium": true,
+            "rewards_rate": "3.33% base, 5 points/Rs.150, 10X on SmartBuy",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "Unlimited for primary/add-on members",
+            "fuel_benefits": "None",
+            "dining": "2X on weekend dining",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "The HDFC Diners Club Black Metal Edition is one of India’s most prestigious ultra-premium credit cards, designed for high-net-worth individuals seeking luxury travel and lifestyle benefits. Cardholders earn a strong 5 reward points per ₹150 spent (approx. 3.33% value), with a massive 10X rewards (up to 33% value back) on HDFC SmartBuy partners, including flights, hotels, and select merchants. The card offers unlimited complimentary access to 1,000+ airport lounges worldwide for both primary and add-on members, making it ideal for frequent travelers. Additional perks include complimentary annual memberships to top brands like Club Marriott, Forbes, Amazon Prime, Swiggy One, and more, on achieving annual spend milestones. Weekend dining earns double rewards, and the card features a low 2% forex markup. Insurance coverages include air accident, medical emergency, and lost card liability. The card requires a high annual income and has a ₹10,000 annual fee (waived on ₹5L annual spend)."
+        },
+        {
+            "id": 12,
+            "bank": "Axis Bank",
+            "name": "Axis Bank Reserve Credit Card",
+            "annual_fee": 50000,
+            "rating": 3.5,
+            "is_premium": true,
+            "rewards_rate": "3% domestic, 6% international, 30 EDGE/Rs.200",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "Unlimited domestic & international via Priority Pass",
+            "fuel_benefits": "None",
+            "dining": "B1G1 BookMyShow, ITC Culinaire memberships",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "Axis Bank Reserve is an invite-only super-premium credit card for the ultra-affluent, offering exceptional travel, lifestyle, and golf privileges. Cardholders earn 30 EDGE Reward Points per ₹200 spent (approx. 3% domestic, 6% international value), with points redeemable for flights, hotels, and luxury merchandise. Enjoy unlimited complimentary lounge access worldwide (including Priority Pass for primary and add-on members), 50 complimentary golf rounds annually, and exclusive memberships like ITC Culinaire and EazyDiner Prime. The card offers a low 1.5% forex markup and premium concierge services. Dining benefits include BookMyShow B1G1 and luxury hotel privileges. The annual fee is ₹50,000, and eligibility is strictly by invitation, targeting high-spending individuals."
+        },
+        {
+            "id": 13,
+            "bank": "Axis Bank",
+            "name": "Axis Bank Atlas Credit Card",
+            "annual_fee": 5000,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "2.5X EDGE Miles on travel, 5/Rs.100 travel",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "12 international, 18 domestic/year",
+            "fuel_benefits": "None",
+            "dining": "None",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "The Axis Bank Atlas Credit Card is a premium travel-focused card with a tiered rewards program. Cardholders earn 5 EDGE Miles per ₹100 on travel bookings via Axis Travel Edge and 2 EDGE Miles per ₹100 on all other spends. Miles can be redeemed for flights and hotels across 20+ airline and hotel partners. The card offers up to 18 complimentary domestic and 12 international lounge visits per year, depending on the tier (Silver, Gold, or Platinum) achieved through annual spending. Additional travel perks include airport meet-and-greet, discounts on car rentals, and exclusive hotel offers. The annual fee is ₹5,000, with renewal fee waiver on ₹7.5L annual spend."
+        },
+        {
+            "id": 14,
+            "bank": "HDFC",
+            "name": "HDFC Regalia Gold Credit Card",
+            "annual_fee": 2500,
+            "rating": 4.5,
+            "is_premium": false,
+            "rewards_rate": "5X on Nykaa/Myntra/Marks & Spencer, 4/Rs.150",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "6 international, 12 domestic/year",
+            "fuel_benefits": "None",
+            "dining": "Complimentary Swiggy One, MMT Black Elite",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "The HDFC Regalia Gold is a versatile premium card, offering robust rewards and travel benefits. Earn 4 reward points per ₹150 on regular spends, and 5X points on select partners like Nykaa, Myntra, and Marks & Spencer. Cardholders get 12 complimentary domestic and 6 international lounge visits per year. Additional perks include complimentary Swiggy One and MakeMyTrip Black Elite memberships, milestone-based flight vouchers, and insurance covers for travel and emergencies. The card features a low forex markup of 2% and is suited for frequent travelers and shoppers. The annual fee is ₹2,500 (waived on ₹4L annual spend)."
+        },
+        {
+            "id": 15,
+            "bank": "YES Bank",
+            "name": "YES Bank Paisabazaar PaisaSave Credit Card",
+            "annual_fee": 499,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "None",
+            "cashback": {
+                "fuel": "1% surcharge waiver, up to Rs.250/month",
+                "online": "3% on e-commerce (max 5000 points/month), 1.5% unlimited other online"
+            },
+            "lounge_access": "None",
+            "fuel_benefits": "1% surcharge waiver, up to Rs.250/month",
+            "dining": "None",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "A co-branded card with Paisabazaar, this YES Bank offering is designed for online shoppers. Cardholders earn 3% cashback (as reward points) on e-commerce spends (capped at 5,000 points/month) and 1.5% unlimited cashback on other online spends. There’s a 1% fuel surcharge waiver (up to ₹250/month) and a low annual fee of ₹499, which is waived on annual spends of ₹1.2 lakh. The card does not offer lounge, dining, or insurance benefits, but stands out for high online cashback and affordability."
+        },
+        {
+            "id": 16,
+            "bank": "SBI",
+            "name": "SBI Cashback SBI Card",
+            "annual_fee": 999,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "None",
+            "cashback": {
+                "fuel": "1% surcharge waiver, up to Rs.100/month",
+                "online": "5% online, 1% offline, up to Rs.5000/month"
+            },
+            "lounge_access": "None",
+            "fuel_benefits": "1% surcharge waiver, up to Rs.100/month",
+            "dining": "None",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "The SBI Cashback Card is a top choice for online shoppers, offering 5% cashback on all online spends (excluding utility, rent, and select categories) and 1% on offline spends, with a monthly cashback cap of ₹5,000. Cardholders also get a 1% fuel surcharge waiver (up to ₹100/month). The annual fee is ₹999, which is reversed on annual spends of ₹2 lakh. The card does not provide lounge, dining, or insurance benefits, but is highly popular for its simple, uncapped online cashback structure."
+        },
+        {
+            "id": 17,
+            "bank": "HSBC",
+            "name": "HSBC TravelOne Credit Card",
+            "annual_fee": 4999,
+            "rating": 3.5,
+            "is_premium": true,
+            "rewards_rate": "2x on travel, 4/Rs.100 flights/foreign currency",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "6 domestic, 4 international/year",
+            "fuel_benefits": "None",
+            "dining": "20% off Zomato, Yatra, EaseMyTrip",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "HSBC TravelOne is a premium travel card with strong rewards for frequent flyers. Cardholders earn 4 reward points per ₹100 on flight bookings and foreign currency spends, and 2 points per ₹100 on other travel spends. Points can be transferred to 20+ global airline and hotel partners. The card offers 6 complimentary domestic and 4 international lounge visits per year, plus complimentary golf lessons and discounts (20%) on Zomato, Yatra, and EaseMyTrip. The annual fee is ₹4,999, and the card targets travelers who want flexible air mile redemptions and travel perks."
+        },
+        {
+            "id": 18,
+            "bank": "Axis Bank",
+            "name": "Axis Bank SELECT Credit Card",
+            "annual_fee": 3000,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "2X EDGE on retail, 10/Rs.200",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "12 international/year, 2 domestic/quarter",
+            "fuel_benefits": "None",
+            "dining": "Rs.200 off Swiggy twice/month",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "Axis Bank SELECT is a premium lifestyle card offering 10 EDGE Reward Points per ₹200 spent and double points on retail spends. Cardholders enjoy 12 international lounge visits per year and 2 domestic visits per quarter. Dining benefits include ₹200 off Swiggy twice a month, and discounts on BigBasket. The card also offers a 1% fuel surcharge waiver and discounts on movie tickets. The annual fee is ₹3,000, with a waiver on ₹6 lakh annual spend, making it suitable for those seeking all-round lifestyle benefits."
+        },
+        {
+            "id": 19,
+            "bank": "HDFC",
+            "name": "HDFC Tata Neu Infinity Credit Card",
+            "annual_fee": 1499,
+            "rating": 3.5,
+            "is_premium": false,
+            "rewards_rate": "5% on Tata Neu, 1.5% other, low forex 2%",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "8 domestic, 4 international/year",
+            "fuel_benefits": "None",
+            "dining": "None",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "A co-branded card with Tata Neu, the HDFC Tata Neu Infinity is ideal for those who frequently shop across Tata brands. Earn 5% NeuCoins on Tata Neu app spends (including Croma, BigBasket, AirAsia, etc.), and 1.5% NeuCoins on non-Tata spends. The card offers 8 complimentary domestic and 4 international lounge visits per year, and features a low 2% forex markup. The annual fee is ₹1,499, waived on ₹3 lakh annual spend. The card is best for Tata loyalists looking for value-back and travel perks."
+        },
+        {
+            "id": 20,
+            "bank": "RBL Bank",
+            "name": "RBL Bank IndianOil XTRA Credit Card",
+            "annual_fee": 1500,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "8.5% savings on IOCL fuel, 2/Rs.100 other",
+            "cashback": {
+                "fuel": "7.5% as 15 points/Rs.100 IOCL, 1% waiver",
+                "online": "None"
+            },
+            "lounge_access": "None",
+            "fuel_benefits": "7.5% as 15 points/Rs.100 IOCL, 1% waiver",
+            "dining": "None",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "This card is specifically designed for individuals who frequently spend on fuel at IndianOil outlets. Cardholders earn 7.5% value back as 15 reward points per ₹100 spent on fuel at IndianOil petrol pumps, along with a 1% fuel surcharge waiver. Additional benefits include welcome and milestone fuel points, making it highly rewarding for regular fuel users. The annual fee can be waived if annual spending exceeds ₹2.75 lakh. However, the card does not offer lounge access, dining, or insurance benefits, focusing almost entirely on maximizing fuel savings for its users."
+        },
+        {
+            "id": 21,
+            "bank": "RBL Bank",
+            "name": "RBL Bank BankBazaar SaveMax Credit Card",
+            "annual_fee": 0,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "5x on groceries (capped at 1,000/month), 1 point per Rs.100 (excl. certain categories)",
+            "cashback": {
+                "fuel": "None",
+                "online": "10% on Zomato/BookMyShow (up to Rs.100/month)"
+            },
+            "lounge_access": "None",
+            "fuel_benefits": "None",
+            "dining": "10% cashback on Zomato/BookMyShow (up to Rs.100/month)",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "A lifetime-free credit card, the SaveMax is tailored for everyday savings, especially on groceries and dining. Cardholders earn 5X reward points on grocery spends (capped at 1,000 points per month) and 1 point per ₹100 on other eligible categories. Dining enthusiasts benefit from 10% cashback on Zomato and BookMyShow (up to ₹100 per month). The card does not provide fuel benefits, lounge access, or insurance, but stands out for its no annual fee and practical rewards structure for regular household and dining expenses."
+        },
+        {
+            "id": 22,
+            "bank": "YES Bank",
+            "name": "YES Bank FinBooster Credit Card",
+            "annual_fee": 0,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "5X on dining, 3X on groceries/apparel, 2X on other retail",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "None",
+            "fuel_benefits": "1% surcharge waived on fuel (Rs.400-5,000, no cap mentioned)",
+            "dining": "None",
+            "insurance": "Rs.2.50 lakh credit shield cover (accidental death)",
+            "eligibility": "Salaried/self-employed, 21-60 years, Rs.25,000/month salary or Rs.7.50 lakh ITR",
+            "summary": "This card combines rewards with credit health features. It is lifetime-free and offers accelerated rewards: 5X on dining, 3X on groceries and apparel, and 2X on other retail transactions. A notable feature is the 1% fuel surcharge waiver (on transactions between ₹400–₹5,000). Cardholders also benefit from a credit shield insurance cover of ₹2.5 lakh in case of accidental death. The card is contactless-enabled, making transactions faster and more secure. Eligibility includes salaried or self-employed individuals aged 21–60 years with a minimum monthly income of ₹25,000 or ITR of ₹7.5 lakh."
+        },
+        {
+            "id": 23,
+            "bank": "Federal Bank",
+            "name": "Federal Bank VISA Signet Credit Card",
+            "annual_fee": 0,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "3x on electronics/apparel, 2x on entertainment, 1x on others",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "1 complimentary domestic airport lounge access/quarter",
+            "fuel_benefits": "None",
+            "dining": "BOGO on INOX movie tickets (once/quarter), Swiggy vouchers on Rs.20,000 quarterly spend",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "A lifetime-free card that focuses on rewards for shopping and entertainment. Users earn 3X points on electronics and apparel, 2X on entertainment, and 1X on other spends. The card provides one complimentary domestic airport lounge access per quarter, enhancing travel experiences. Dining offers include buy-one-get-one (BOGO) on INOX movie tickets (once per quarter) and Swiggy vouchers for quarterly spends above ₹20,000. There are no fuel or insurance benefits, but the card stands out for its shopping, entertainment, and limited travel perks."
+        },
+        {
+            "id": 24,
+            "bank": "HSBC",
+            "name": "HSBC Visa Platinum Credit Card",
+            "annual_fee": 0,
+            "rating": 4.0,
+            "is_premium": true,
+            "rewards_rate": "2 points per Rs.150, 5X after Rs.4 lakh (capped at 15,000/year)",
+            "cashback": {
+                "fuel": "None",
+                "online": "None"
+            },
+            "lounge_access": "None",
+            "fuel_benefits": "Save up to Rs.3,000 annually on fuel surcharges",
+            "dining": "None",
+            "insurance": "Zero liability up to Rs.3 lakh on lost card, emergency replacement",
+            "eligibility": "Not specified",
+            "summary": "This premium, lifetime-free card is known for its comprehensive benefits. Cardholders earn 2 reward points per ₹150 spent, with accelerated 5X points after annual spends of ₹4 lakh (capped at 15,000 points per year). It offers significant fuel savings, with up to ₹3,000 saved annually on fuel surcharges. The card supports air miles conversion and provides robust insurance, including zero liability up to ₹3 lakh on lost card and emergency replacement services. It does not offer lounge or dining benefits, but is valued for its global acceptance, insurance coverage, and fuel savings."
+        },
+        {
+            "id": 25,
+            "name": "SBI SimplySAVE Credit Card",
+            "bank": "SBI",
+            "annual_fee": 499,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "10X per Rs.150 on dining/movies/dept. stores/groceries, 1 point per Rs.150 others",
+            "cashback": "None for fuel or online",
+            "lounge_access": "None",
+            "fuel_benefits": "1% waiver on fuel (Rs.500-3,000, max Rs.100/cycle)",
+            "dining": "10X points on dining/movies/dept. stores/groceries",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "An affordable entry-level card, the SimplySAVE is ideal for those seeking high rewards on daily essentials. Cardholders earn 10X reward points per ₹150 spent on dining, movies, department stores, and groceries, and 1 point per ₹150 on other spends. There is a 1% fuel surcharge waiver (on transactions between ₹500–₹3,000, up to ₹100 per statement cycle). The card does not offer lounge access or insurance, but is widely accepted and provides strong value for everyday spending categories."
+        },
+        {
+            "id": 26,
+            "name": "ICICI Bank Amazon Pay Credit Card",
+            "bank": "ICICI Bank",
+            "annual_fee": 0,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "None",
+            "cashback": "1% waiver on fuel transactions, 5% on Amazon India (Prime), 3% (non-Prime), 2% on Amazon Pay partners, 1% on others online",
+            "lounge_access": "None",
+            "fuel_benefits": "1% waiver on fuel transactions",
+            "dining": "None",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "This card is popular among frequent Amazon shoppers. It is lifetime-free and offers 5% cashback on Amazon India for Prime members, 3% for non-Prime, 2% on Amazon Pay partner merchants, and 1% on other online spends. There is a 1% fuel surcharge waiver on fuel transactions. Cashback is credited as Amazon Pay balance with no expiry, making it easy to redeem. The card does not offer lounge, dining, or insurance benefits, but is highly rewarding for online and Amazon-centric spending."
+        },
+        {
+            "id": 27,
+            "name": "Axis Bank ACE Credit Card",
+            "bank": "Axis Bank",
+            "annual_fee": 499,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "None",
+            "cashback": "1% waiver on fuel (Rs.400-5,000, max Rs.500/statement), 5% on bill payments/recharges via Google Pay, 4% on Swiggy/Zomato/Ola, 1.5% on others online",
+            "lounge_access": "4 complimentary domestic lounge visits/year",
+            "fuel_benefits": "1% waiver on fuel (Rs.400-5,000, max Rs.500/statement)",
+            "dining": "15% discount at 4,000+ partner restaurants",
+            "insurance": "None",
+            "eligibility": "Not specified",
+            "summary": "A value-packed card for those who prioritize cashback. Cardholders get 5% cashback on bill payments and mobile recharges via Google Pay, 4% on Swiggy, Zomato, and Ola, and 1.5% on other online spends. There is a 1% fuel surcharge waiver (on ₹400–₹5,000 transactions, up to ₹500 per statement). The card comes with four complimentary domestic airport lounge visits per year and a 15% discount at 4,000+ partner restaurants. No joining fee is charged through select channels, making it accessible for many users."
+        },
+        {
+            "id": 28,
+            "name": "IndusInd Bank Platinum Aura Edge Credit Card",
+            "bank": "IndusInd Bank",
+            "annual_fee": 0,
+            "rating": 4.0,
+            "is_premium": true,
+            "rewards_rate": "Up to 8x on select merchants per Rs.100, Shop Plan: 4 on dept. stores, 2 on durables/electronics, 1.5 on restaurants/books, 0.5 on others",
+            "cashback": "1% waiver on fuel surcharge, 1% on retail purchases (capped at 2,500/month from Sep 2024) online",
+            "lounge_access": "None",
+            "fuel_benefits": "1% waiver on fuel surcharge",
+            "dining": "Discount vouchers via Vocuhagram/Vouchagram premium",
+            "insurance": "Rs.1 lakh lost baggage, Rs.25,000 delayed baggage/ticket/missed connection, Rs.50,000 lost passport, Rs.25 lakh air accident, counterfeit fraud protection",
+            "eligibility": "Not specified",
+            "summary": "This card offers a customizable rewards structure, with up to 8X points per ₹100 on select merchants. The Shop Plan provides 4 points on department stores, 2 on durables/electronics, 1.5 on restaurants/books, and 0.5 on others. Cardholders enjoy a 1% fuel surcharge waiver and up to 1% cashback on retail purchases (capped at ₹2,500/month from September 2024). Insurance benefits include lost baggage, delayed baggage, lost passport, missed connection, air accident cover, and counterfeit fraud protection. Dining discounts are available via Vouchagram premium. The card is lifetime-free and well-suited for those seeking rewards and travel insurance."
+        },
+        {
+            "id": 29,
+            "name": "IDFC First Millennia Credit Card",
+            "bank": "IDFC First Bank",
+            "annual_fee": 0,
+            "rating": 4.0,
+            "is_premium": true,
+            "rewards_rate": "10X on eligible transactions, 3X on UPI, 100% cashback up to Rs.200 (Rs.50 each on first 4 UPI)",
+            "cashback": "1% surcharge waiver on fuel, 5% cashback on first EMI (up to Rs.1,000), 2% on EMI thereafter online",
+            "lounge_access": "None",
+            "fuel_benefits": "1% surcharge waiver on fuel",
+            "dining": "25% discount at select restaurants",
+            "insurance": "Rs.50 lakh air accident cover, zero liability on lost card",
+            "eligibility": "Salaried/self-employed, 21-65 years, min. income Rs.2 lakh/year",
+            "summary": "A lifetime-free card with high rewards and comprehensive benefits. Cardholders earn 10X rewards on eligible transactions, 3X on UPI spends, and 100% cashback up to ₹200 (₹50 each on first four UPI transactions). There is a 1% fuel surcharge waiver and 5% cashback on the first EMI transaction (up to ₹1,000), with 2% on subsequent EMI spends online. Dining discounts of 25% are available at select restaurants. Insurance coverage includes ₹50 lakh air accident cover and zero liability on lost card. Eligibility requires a minimum annual income of ₹2 lakh for individuals aged 21–65 years."
+        },
+        {
+            "id": 30,
+            "name": "American Express Membership Rewards® Credit Card",
+            "bank": "American Express",
+            "annual_fee": 1000,
+            "rating": 4.0,
+            "is_premium": false,
+            "rewards_rate": "1 Membership Rewards® Point for every Rs.50 spent (excludes Fuel, Insurance, Utilities, Cash Transactions, EMI at POS)",
+            "cashback": "None for fuel or online",
+            "lounge_access": "None",
+            "fuel_benefits": "0% Convenience fee on fuel purchase at HPCL for transactions < Rs.5,000; 1% fee for ≥ Rs.5,000",
+            "dining": "Up to 20% discount at select restaurants",
+            "insurance": "None",
+            "eligibility": "Resident Indian, personal annual income Rs.6 Lakhs+, over 18 years, good credit history, etc.",
+            "summary": "This card is focused on maximizing Membership Rewards® Points. Cardholders earn 1 point for every ₹50 spent (excluding fuel, insurance, utilities, cash transactions, and EMI at POS). There is no cashback for fuel or online spends, but users benefit from a 0% convenience fee on fuel purchases at HPCL for transactions below ₹5,000 and a 1% fee for higher amounts. Dining benefits include up to 20% discount at select restaurants. Eligibility criteria include a minimum annual income of ₹6 lakh, Indian residency, age over 18, and a good credit history. The card is ideal for those who value reward points and exclusive dining offers."
         }
     ]
 ]
