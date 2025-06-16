@@ -76,7 +76,7 @@ export default function CardTypes() {
 
             <div className="grid gap-6 md:grid-cols-2">
                 {cardTypes.map((type, index) => (
-                    <Card key={index} className="p-6">
+                    <Card key={index} className="p-6 bg-gray-400/10 border-white/20 text-white">
                         <div className="flex items-center gap-3 mb-4">
                             {type.icon}
                             <h3 className="text-xl font-semibold">{type.title}</h3>
@@ -100,7 +100,7 @@ export default function CardTypes() {
                 ))}
             </div>
 
-            <Card className="p-4 bg-muted">
+            <Card className="p-4 bg-gray-400/10 border-none text-white">
                 <h3 className="text-lg font-medium mb-2">Choosing the Right Card</h3>
                 <ul className="list-disc list-inside space-y-2">
                     <li>Consider your spending patterns and lifestyle</li>
