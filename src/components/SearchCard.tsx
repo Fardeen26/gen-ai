@@ -63,7 +63,6 @@ export default function SearchCard({ isHomePage = false }: {
                     isComparison: true
                 };
             } else if (cardData.type === "text") {
-                console.log("inside table", cardData.results)
                 botMessage = {
                     role: "bot",
                     content: cardData.content

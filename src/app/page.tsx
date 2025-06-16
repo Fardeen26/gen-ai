@@ -17,6 +17,7 @@ export default function Home() {
           <Link href="/" className="hover:text-blue-400 transition-colors">Home</Link>
           <Link href="/cards" className="hover:text-blue-400 transition-colors">Available Cards</Link>
           <Link href="/assistant" className="hover:text-blue-400 transition-colors">AI assistant</Link>
+          <Link href="/learn" className="hover:text-blue-400 transition-colors">Learn</Link>
         </nav>
 
         <div className="space-x-4">
