@@ -26,6 +26,9 @@ export default function SearchCard({ isHomePage = false }: {
     const [query, setQuery] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const scrollToBottomRef = useRef<HTMLDivElement | null>(null)
+    const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+    const [isNearBottom, setIsNearBottom] = useState(true);
+
 
     const handleSubmit = async () => {
         if (!query.trim()) return;
@@ -84,15 +87,31 @@ export default function SearchCard({ isHomePage = false }: {
     }
 
     useEffect(() => {
-        if (scrollToBottomRef.current && !isHomePage) {
-            scrollToBottomRef.current.scrollIntoView({ behavior: "auto" });
-        }
-    }, [messages, isHomePage]);
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        const handleScroll = () => {
+        const bootomOffSet = 100; 
+        const isAtBottom = container.scrollHeight - container.scrollTop - container.clientHeight < bootomOffSet;
+        setIsNearBottom(isAtBottom);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+    }, []);
+
+
+    useEffect(() => {
+    if (scrollToBottomRef.current && isNearBottom) {
+        scrollToBottomRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+    }, [messages, isNearBottom]);
+
 
     return (
         <div className={`flex flex-col ${isHomePage ? 'h-auto' : 'h-[calc(100vh-2.5rem)]'} mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto rounded-xl sm:rounded-2xl  relative !overflow-hidden bg-black text-white`}>
             <ScrollAreaPrimitive.Root className="flex-1 px-0 pt-4 sm:pt-8 pb-4 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{ height: "calc(100vh-120px)" }}>
-                <ScrollAreaPrimitive.Viewport className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-8">
+                <ScrollAreaPrimitive.Viewport ref={scrollContainerRef} className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-8">
                     {messages.map((message, index) => (
                         <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
                             <div className="flex items-end gap-2 relative px-10 sm:px-12">
