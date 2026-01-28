@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
         
         Important formatting instructions for the VISIBLE (user-facing) part of the response:
         1. Use SIMPLE HTML ONLY (no markdown). You may use these tags: <p>, <br>, <ul>, <ol>, <li>, <strong>, <b>, <em>, <i>, <h3>, <h4>, <span>.
-        2. Use <p> for paragraphs, <ul>/<ol>/<li> for bullet or numbered lists.
+        2. ALWAYS use <ul> or <ol> together with <li> for any list of items. Do NOT use "-" or "1." at the start of lines for lists.
         3. Use <strong> or <b> for bold emphasis and <em> or <i> for slight emphasis.
         4. Structure the explanation into short paragraphs and bullet lists where helpful.
         5. Avoid using any other HTML tags, inline styles, or scripts.

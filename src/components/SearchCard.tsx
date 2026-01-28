@@ -257,7 +257,7 @@ export default function SearchCard({ isHomePage = false }: {
                                         ) : (
                                             message.role === "bot" ? (
                                                 <div
-                                                    className="space-y-2"
+                                                    className="space-y-2 [&_ul]:list-disc [&_ul]:ml-4 [&_ol]:list-decimal [&_ol]:ml-4 [&_li]:mt-1"
                                                     dangerouslySetInnerHTML={{ __html: message.content }}
                                                 />
                                             ) : (
