@@ -16,6 +16,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const url = new URL(req.url);
+    const shouldStream = url.searchParams.get("stream") === "1";
     const { query } = await req.json();
 
     const prompt = `
@@ -58,30 +60,88 @@ export async function POST(req: NextRequest) {
         1. Provide a detailed summary of each card's key features and benefits
         2. Highlight what makes each card unique
         
-        Important formatting instructions:
-        1. Use plain text only - do not use markdown symbols like *, -, or any other special formatting characters
-        2. Write in clear, well-structured paragraphs
-        3. Use proper spacing and line breaks for readability
-        4. Avoid using any special characters or symbols for emphasis
-        5. Keep the language simple and professional
+        Important formatting instructions for the VISIBLE (user-facing) part of the response:
+        1. Use SIMPLE HTML ONLY (no markdown). You may use these tags: <p>, <br>, <ul>, <ol>, <li>, <strong>, <b>, <em>, <i>, <h3>, <h4>, <span>.
+        2. Use <p> for paragraphs, <ul>/<ol>/<li> for bullet or numbered lists.
+        3. Use <strong> or <b> for bold emphasis and <em> or <i> for slight emphasis.
+        4. Structure the explanation into short paragraphs and bullet lists where helpful.
+        5. Avoid using any other HTML tags, inline styles, or scripts.
         
-        Always wrap your response in a JSON object with appropriate type and fields.
+        Output format requirements (IMPORTANT):
+        1. The FIRST line of your response must be EXACTLY one of:
+             TYPE: cards
+             TYPE: comparison
+             TYPE: text
+        2. After that first line, write ONLY the user-facing response as simple HTML using the allowed tags above.
+        3. Then, on a new line AFTER the HTML, include a JSON code block exactly in this form:
+           \`\`\`json
+           { "type": "...", ... }
+           \`\`\`
+        4. The JSON must contain the full structured payload (type + fields described above).
       `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
+    if (!shouldStream) {
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash-lite",
+        contents: prompt,
+        config: {
+          responseModalities: [Modality.TEXT],
+        },
+      });
+
+      const content = response?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!content) {
+        throw new Error("Invalid response format from AI model");
+      }
+
+      return Response.json({ results: content });
+    }
+
+    const encoder = new TextEncoder();
+    const stream = await ai.models.generateContentStream({
+      model: "gemini-2.5-flash-lite",
       contents: prompt,
       config: {
         responseModalities: [Modality.TEXT],
       },
     });
 
-    const content = response?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!content) {
-      throw new Error('Invalid response format from AI model');
-    }
+    const readable = new ReadableStream<Uint8Array>({
+      async start(controller) {
+        try {
+          for await (const chunk of stream) {
+            const text = chunk?.candidates?.[0]?.content?.parts
+              ?.map((p) => p.text ?? "")
+              .join("");
 
-    return Response.json({ results: content || [] });
+            if (!text) continue;
+
+            controller.enqueue(
+              encoder.encode(JSON.stringify({ type: "delta", text }) + "\n")
+            );
+          }
+
+          controller.enqueue(encoder.encode(JSON.stringify({ type: "done" }) + "\n"));
+        } catch (error) {
+          console.error("Error streaming query response:", error);
+          controller.enqueue(
+            encoder.encode(
+              JSON.stringify({ type: "error", error: "Failed to process query" }) + "\n"
+            )
+          );
+        } finally {
+          controller.close();
+        }
+      },
+    });
+
+    return new Response(readable, {
+      headers: {
+        "Content-Type": "application/x-ndjson; charset=utf-8",
+        "Cache-Control": "no-cache, no-transform",
+        Connection: "keep-alive",
+      },
+    });
   } catch (error) {
     console.error('Error processing query:', error);
     return Response.json({ error: "Failed to process query" }, { status: 500 });

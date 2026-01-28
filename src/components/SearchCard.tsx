@@ -7,7 +7,6 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Send, CircleStop } from "lucide-react"
 import CreditCardDetailCard from "@/components/CreditCardDetailCard"
-import axios from 'axios'
 import { Message } from "@/types"
 import { BENEFIT_CONFIG } from "@/config/benifits"
 import { extractJsonFromAIResponse } from "@/lib/jsonFormatter"
@@ -25,61 +24,195 @@ export default function SearchCard({ isHomePage = false }: {
     ])
     const [query, setQuery] = useState("")
     const [isLoading, setIsLoading] = useState(false)
+    const [expectedType, setExpectedType] = useState<"cards" | "comparison" | "text" | null>(null)
     const scrollToBottomRef = useRef<HTMLDivElement | null>(null)
+    const abortControllerRef = useRef<AbortController | null>(null)
+    const activeBotMessageIndexRef = useRef<number | null>(null)
+    const [isFinalizing, setIsFinalizing] = useState(false)
+    const hasStructuredStartedRef = useRef(false)
+    const expectedTypeRef = useRef<"cards" | "comparison" | "text" | null>(null)
+
+    const stopStreaming = () => {
+        abortControllerRef.current?.abort()
+        abortControllerRef.current = null
+        setIsFinalizing(false)
+        setIsLoading(false)
+    }
 
     const handleSubmit = async () => {
-        if (!query.trim()) return;
+        if (!query.trim() || isLoading) return;
+        const currentQuery = query
+        hasStructuredStartedRef.current = false
+        expectedTypeRef.current = null
+        setExpectedType(null)
 
         const userMessage: Message = {
             role: "user",
             content: query
         };
         setMessages(prev => [...prev, userMessage]);
+        setMessages(prev => {
+            const next = [...prev, { role: "bot", content: "" } as Message]
+            activeBotMessageIndexRef.current = next.length - 1
+            return next
+        })
         setQuery("");
         setIsLoading(true)
+        setIsFinalizing(false)
+
+        const controller = new AbortController()
+        abortControllerRef.current = controller
+
+        const updateActiveBotMessage = (patch: Partial<Message>) => {
+            const idx = activeBotMessageIndexRef.current
+            if (idx == null) return
+            setMessages(prev => {
+                if (!prev[idx]) return prev
+                const next = [...prev]
+                next[idx] = { ...next[idx], ...patch }
+                return next
+            })
+        }
+
         try {
-            const response = await axios.post('/api/query', { query });
+            const response = await fetch('/api/query?stream=1', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: currentQuery }),
+                signal: controller.signal
+            })
 
-            let botMessage: Message;
-            const cardData = extractJsonFromAIResponse(response.data.results)
-
-            if (cardData.type === "cards") {
-                botMessage = {
-                    role: "bot",
-                    content: cardData.summary || `I found ${cardData.results.length} credit card${cardData.results.length > 1 ? 's' : ''} matching your requirements:`,
-                    cardData: cardData.results
-                };
-            } else if (cardData.type === "comparison") {
-                let content = cardData.summary || "Here's a comparison of the requested credit cards:";
-
-                if (cardData.missing_cards && cardData.missing_cards.length > 0) {
-                    content += `\n\nNote: The following cards were not found in our database: ${cardData.missing_cards.join(", ")}`;
-                }
-
-                botMessage = {
-                    role: "bot",
-                    content: content,
-                    cardData: cardData.results,
-                    isComparison: true
-                };
-            } else if (cardData.type === "text") {
-                botMessage = {
-                    role: "bot",
-                    content: cardData.content
-                };
-            } else {
-                throw new Error("Invalid response type");
+            if (!response.ok) {
+                const errorText = await response.text().catch(() => "")
+                throw new Error(errorText || "Request failed")
             }
 
-            setMessages(prev => [...prev, botMessage]);
+            const contentType = response.headers.get("content-type") || ""
+
+            // Fallback (non-stream) response handling
+            if (!response.body || !contentType.includes("application/x-ndjson")) {
+                const data = await response.json()
+                const fullText: string = data.results
+                const beforeJson = fullText.split("```json")[0]
+                const visibleText = beforeJson.replace(/^TYPE:.*$/gim, "").trim()
+                const cardData = extractJsonFromAIResponse(fullText)
+
+                if (cardData.type === "cards" || cardData.type === "comparison" || cardData.type === "text") {
+                    expectedTypeRef.current = cardData.type
+                    setExpectedType(cardData.type)
+                }
+
+                if (cardData.type === "cards") {
+                    updateActiveBotMessage({
+                        content: visibleText || cardData.summary || `I found ${cardData.results.length} credit card${cardData.results.length > 1 ? 's' : ''} matching your requirements:`,
+                        cardData: cardData.results,
+                        isComparison: false
+                    })
+                } else if (cardData.type === "comparison") {
+                    let content = visibleText || cardData.summary || "Here's a comparison of the requested credit cards:"
+                    if (cardData.missing_cards && cardData.missing_cards.length > 0) {
+                        content += `\n\nNote: The following cards were not found in our database: ${cardData.missing_cards.join(", ")}`
+                    }
+                    updateActiveBotMessage({
+                        content,
+                        cardData: cardData.results,
+                        isComparison: true
+                    })
+                } else if (cardData.type === "text") {
+                    updateActiveBotMessage({ content: visibleText || cardData.content })
+                } else {
+                    throw new Error("Invalid response type")
+                }
+                return
+            }
+
+            const reader = response.body.getReader()
+            const decoder = new TextDecoder()
+            let buffer = ""
+            let fullText = ""
+
+            while (true) {
+                const { value, done } = await reader.read()
+                if (done) break
+                buffer += decoder.decode(value, { stream: true })
+
+                const lines = buffer.split("\n")
+                buffer = lines.pop() ?? ""
+
+                for (const line of lines) {
+                    const trimmed = line.trim()
+                    if (!trimmed) continue
+
+                    const event = JSON.parse(trimmed) as { type: string; text?: string; error?: string }
+                    if (event.type === "delta" && typeof event.text === "string") {
+                        fullText += event.text
+
+                        // Detect structured response type as soon as possible
+                        if (!expectedTypeRef.current && fullText.includes("TYPE:")) {
+                            const match = fullText.match(/TYPE:\s*(cards|comparison|text)/i)
+                            if (match) {
+                                const t = match[1].toLowerCase() as "cards" | "comparison" | "text"
+                                expectedTypeRef.current = t
+                                setExpectedType(t)
+                            }
+                        }
+
+                        const beforeJson = fullText.split("```json")[0]
+                        const visible = beforeJson.replace(/^TYPE:.*$/gim, "").replace(/\s+$/, "")
+                        if (visible.trim().length > 0) {
+                            updateActiveBotMessage({ content: visible })
+                        }
+
+                        // As soon as the JSON block starts streaming (which the user doesn't see),
+                        // show a loading state for cards / comparison so the UI doesn't look frozen.
+                        if (!hasStructuredStartedRef.current && fullText.includes("```json")) {
+                            hasStructuredStartedRef.current = true
+                            if (expectedTypeRef.current === "cards" || expectedTypeRef.current === "comparison") {
+                                setIsFinalizing(true)
+                            }
+                        }
+                    } else if (event.type === "error") {
+                        throw new Error(event.error || "Failed to process query")
+                    }
+                }
+            }
+
+            const beforeJson = fullText.split("```json")[0]
+            const visibleText = beforeJson.replace(/^TYPE:.*$/gim, "").trim()
+            const cardData = extractJsonFromAIResponse(fullText)
+
+            if (cardData.type === "cards") {
+                updateActiveBotMessage({
+                    content: visibleText || cardData.summary || `I found ${cardData.results.length} credit card${cardData.results.length > 1 ? 's' : ''} matching your requirements:`,
+                    cardData: cardData.results,
+                    isComparison: false
+                })
+            } else if (cardData.type === "comparison") {
+                let content = visibleText || cardData.summary || "Here's a comparison of the requested credit cards:"
+                if (cardData.missing_cards && cardData.missing_cards.length > 0) {
+                    content += `\n\nNote: The following cards were not found in our database: ${cardData.missing_cards.join(", ")}`
+                }
+                updateActiveBotMessage({
+                    content,
+                    cardData: cardData.results,
+                    isComparison: true
+                })
+            } else if (cardData.type === "text") {
+                updateActiveBotMessage({ content: visibleText || cardData.content })
+            } else {
+                throw new Error("Invalid response type")
+            }
         } catch (error) {
+            if (controller.signal.aborted) {
+                updateActiveBotMessage({ content: "Stopped." })
+                return
+            }
             console.error('Error processing query:', error);
-            setMessages(prev => [...prev, {
-                role: "bot",
-                content: "Sorry, I encountered an error while processing your request. Please try again."
-            }]);
+            updateActiveBotMessage({ content: "Sorry, I encountered an error while processing your request. Please try again." })
         } finally {
             setIsLoading(false)
+            setIsFinalizing(false)
+            abortControllerRef.current = null
         }
     }
 
@@ -88,6 +221,12 @@ export default function SearchCard({ isHomePage = false }: {
             scrollToBottomRef.current.scrollIntoView({ behavior: "auto" });
         }
     }, [messages, isHomePage]);
+
+    useEffect(() => {
+        return () => {
+            abortControllerRef.current?.abort()
+        }
+    }, [])
 
     return (
         <div className={`flex flex-col ${isHomePage ? 'h-auto' : 'h-[calc(100vh-2.5rem)]'} mt-2 sm:mt-5 mb-2 sm:mb-5 w-full max-w-[75rem] mx-auto rounded-xl sm:rounded-2xl  relative !overflow-hidden bg-black text-white`}>
@@ -105,9 +244,71 @@ export default function SearchCard({ isHomePage = false }: {
                                     )}
                                 </div>
                                 <div className="flex flex-col gap-2 py-2">
-                                    <div className={`${message.role === "user" ? "bg-gradient-to-br from-blue-700 to-blue-500 text-white" : "bg-gradient-to-br bg-gray-400/20"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-3xl text-sm shadow`}>
-                                        {message.content}
+                                    <div className={`${message.role === "user" ? "bg-gradient-to-br from-blue-700 to-blue-500 text-white" : "bg-gradient-to-br bg-gray-400/20"} px-4 sm:px-6 py-3 sm:py-4 rounded-2xl ${message.role === "user" ? "rounded-br-sm" : "rounded-bl-sm"} max-w-[280px] sm:max-w-3xl text-sm shadow leading-relaxed`}>
+                                        {message.role === "bot" && message.content.trim().length === 0 && isLoading && activeBotMessageIndexRef.current === index ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="flex items-center gap-1">
+                                                    <span className="w-2 h-2 rounded-full bg-white/70 animate-pulse" />
+                                                    <span className="w-2 h-2 rounded-full bg-white/70 animate-pulse" />
+                                                    <span className="w-2 h-2 rounded-full bg-white/70 animate-pulse" />
+                                                </div>
+                                                <span className="text-white/70 text-sm">Thinking…</span>
+                                            </div>
+                                        ) : (
+                                            message.role === "bot" ? (
+                                                <div
+                                                    className="space-y-2"
+                                                    dangerouslySetInnerHTML={{ __html: message.content }}
+                                                />
+                                            ) : (
+                                                message.content
+                                            )
+                                        )}
                                     </div>
+
+                                    {message.role === "bot" && isFinalizing && activeBotMessageIndexRef.current === index && !message.cardData && (expectedType === "cards" || expectedType === "comparison") && (
+                                        <div className="flex flex-col gap-4 w-full max-w-3xl">
+                                            <div className="flex items-center gap-2 text-white/70 text-sm">
+                                                <div className="flex gap-1">
+                                                    <span className="w-2 h-2 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: "0ms" }} />
+                                                    <span className="w-2 h-2 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: "150ms" }} />
+                                                    <span className="w-2 h-2 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: "300ms" }} />
+                                                </div>
+                                                <span>
+                                                    {expectedType === "cards" ? "Loading card recommendations…" : "Preparing comparison table…"}
+                                                </span>
+                                            </div>
+
+                                            {expectedType === "cards" && (
+                                                <div className="flex flex-row flex-wrap gap-3 sm:gap-4">
+                                                    {[1, 2, 3].map((i) => (
+                                                        <div
+                                                            key={i}
+                                                            className="h-40 w-full min-w-[200px] max-w-[280px] rounded-lg bg-white/10 animate-pulse"
+                                                            aria-hidden
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {expectedType === "comparison" && (
+                                                <div className="w-full overflow-hidden rounded-lg border border-white/20">
+                                                    <div className="h-10 bg-white/10 animate-pulse" />
+                                                    <div className="flex gap-0 border-t border-white/10">
+                                                        {[1, 2, 3].map((i) => (
+                                                            <div
+                                                                key={i}
+                                                                className="h-24 flex-1 min-w-[120px] bg-white/5 animate-pulse"
+                                                                style={{ animationDelay: `${i * 50}ms` }}
+                                                                aria-hidden
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+
                                     {message.cardData && Array.isArray(message.cardData) && (
                                         message.isComparison ? (
                                             <div className="w-full overflow-x-auto">
@@ -221,7 +422,7 @@ export default function SearchCard({ isHomePage = false }: {
                         }
                     }}
                 />
-                <Button size="icon" className="rounded-full bg-white hover:bg-white/80 text-black w-8 h-8 sm:w-10 sm:h-10" onClick={handleSubmit}>
+                <Button size="icon" className="rounded-full bg-white hover:bg-white/80 text-black w-8 h-8 sm:w-10 sm:h-10" onClick={isLoading ? stopStreaming : handleSubmit}>
                     {isLoading ? <CircleStop className="w-4 h-4 sm:w-5 sm:h-5 text-xs animate-pulse" /> : <Send width={10} height={10} className="w-3 h-3 sm:w-5 sm:h-5" />}
                 </Button>
             </div>
